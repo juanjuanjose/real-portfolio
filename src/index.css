@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Roboto', sans-serif !important;
+  line-height: 1.6; 
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+  margin:0;
+  padding:0;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+fieldset,img { 
+  border:0;
+}
+
+ol,ul {
+  list-style:none;
+}
+caption,th {
+  text-align:left;
+}
+
+q:before,q:after {
+  content:'';
+}
+abbr,acronym { border:0;}
+
+:root{ 
+  --color-primary: #4A90E2;
+  --color-secondary: #E5E5E5;
+  --color-gray: #121212;
+  --color-bluewhite: #6bffd0;
+  --color-really-black: #000000;
+  --transition: all 0.3s ease;
+  --animation-h2: fadeInUp 1s ease forwards 0.5s;
+  --social-animation: translateY(-5px);
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior:smooth;
+}
+
+body{ line-height: 1.6;
+  color: var(--color-secondary);
+  background-color: var(--color-gray);
+  overflow-x: hidden;
+}
+
+p {
+  font-size: 18px;
+  color: var(--color-secondary);
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+
+h2{
+  font-size: 36px !important;
+  color: var(--color-bluewhite);
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  padding-top: 67px;
+}
+
+
+h3{
+  font-size: 26px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+
+
+
+*::-webkit-scrollbar {
+  width: 10px; 
+
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-bluewhite); 
+  border-radius: 8px; 
+  border: 2px solid #000000; 
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #000000; 
+}
