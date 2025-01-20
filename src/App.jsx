@@ -133,7 +133,7 @@ function App() {
                 </p>
                 <img
                   className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
-                  src="/images/sena.png"
+                  src="./images/sena.png"
                   alt="sena image"
                 />
               </div>
@@ -149,7 +149,7 @@ function App() {
                 </p>
                 <img
                   className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
-                  src="/images/casd.png"
+                  src="./images/casd.png"
                   alt="casd image"
                 />
               </div>
