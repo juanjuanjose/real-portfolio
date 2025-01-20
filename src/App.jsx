@@ -1,56 +1,59 @@
-import "./index.css";
+import { useEffect } from "react";
 import NavLink from "./components/NavLink/NavLink";
 import meProfile from "../public/images/me-profile.png";
 import Separator from "./components/Separator/Separator";
 import Ability from "./components/Abilities/Ability";
 import curriculum from "../public/hojadevida/hoja de vida juan.pdf";
 import SocialLinks from "./components/Social/Social";
-
-const title = document.getElementById("title--name");
-const subtitle = document.getElementById("home--title");
-const textos = [
-  { text: "Programador", color: "#6bffd0" },
-  { text: "Frontend", color: "#6bffd0" },
-  { text: "Juan Jose", color: "#6bffd0" },
-];
-let index = 0;
-
-function cambiarTextoConAnimacion() {
-  title.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-  subtitle.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-
-  title.style.opacity = "0";
-  title.style.transform = "translateY(-20px)";
-  subtitle.style.opacity = "0";
-  subtitle.style.transform = "translateY(-20px)";
-
-  setTimeout(() => {
-    title.innerHTML = title.innerHTML.replace(
-      /<span.*?>.*?<\/span>/,
-      `<span style="color: ${textos[index].color};">${textos[index].text}</span>`
-    );
-    subtitle.innerHTML = subtitle.innerHTML.replace(
-      /<span.*?>.*?<\/span>/,
-      `<span style="color: ${textos[index].color};">${textos[index].text}</span>`
-    );
-
-    index = (index + 1) % textos.length;
-
-    title.style.transform = "translateY(20px)";
-    subtitle.style.transform = "translateY(20px)";
-
-    requestAnimationFrame(() => {
-      title.style.opacity = "1";
-      title.style.transform = "translateY(0)";
-      subtitle.style.opacity = "1";
-      subtitle.style.transform = "translateY(0)";
-    });
-  }, 500);
-}
-
-setInterval(cambiarTextoConAnimacion, 5000);
+import "./index.css";
 
 function App() {
+  useEffect(() => {
+    const title = document.getElementById("title--name");
+    const subtitle = document.getElementById("home--title");
+    const textos = [
+      { text: "Programador", color: "#6bffd0" },
+      { text: "Frontend", color: "#6bffd0" },
+      { text: "Juan Jose", color: "#6bffd0" },
+    ];
+    let index = 0;
+
+    function cambiarTextoConAnimacion() {
+      title.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+      subtitle.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+
+      title.style.opacity = "0";
+      title.style.transform = "translateY(-20px)";
+      subtitle.style.opacity = "0";
+      subtitle.style.transform = "translateY(-20px)";
+
+      setTimeout(() => {
+        title.innerHTML = title.innerHTML.replace(
+          /<span.*?>.*?<\/span>/,
+          `<span style="color: ${textos[index].color};">${textos[index].text}</span>`
+        );
+        subtitle.innerHTML = subtitle.innerHTML.replace(
+          /<span.*?>.*?<\/span>/,
+          `<span style="color: ${textos[index].color};">${textos[index].text}</span>`
+        );
+
+        index = (index + 1) % textos.length;
+
+        title.style.transform = "translateY(20px)";
+        subtitle.style.transform = "translateY(20px)";
+
+        requestAnimationFrame(() => {
+          title.style.opacity = "1";
+          title.style.transform = "translateY(0)";
+          subtitle.style.opacity = "1";
+          subtitle.style.transform = "translateY(0)";
+        });
+      }, 400);
+    }
+
+    setInterval(cambiarTextoConAnimacion, 4000);
+  }, []);
+
   return (
     <>
       <header className="fixed top-0 inset-x-0 bg-[rgba(18,18,18,0.9)] backdrop-blur-[10px] z-[1000] shadow-sm">
