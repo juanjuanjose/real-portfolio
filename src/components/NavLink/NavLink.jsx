@@ -1,13 +1,13 @@
-import React from "react";
-
 const NavLink = ({ href, children }) => {
   return (
     <a
-      className="text-[--color-secondary] no-underline text-base font-normal transition-[--transition] relative group after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-[5px] after:left-0 after:bg-[var(--color-bluewhite)] after:transition-all after:duration-300 after:ease-in-out hover:text-[--color-bluewhite]"
       href={href}
+      className="relative group text-[--color-secondary] text-sm font-medium hover:text-[--color-bluewhite] transition-colors duration-300 px-2 py-1"
     >
+      {/* Línea de subrayado animada */}
+      <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-[#6bffd0] to-[#6B8BFF] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+      
       {children}
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[--color-bluewhite] transition-all duration-300 ease-in-out group-hover:w-full"></span>
     </a>
   );
 };

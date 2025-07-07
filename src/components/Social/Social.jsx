@@ -1,52 +1,91 @@
-const socialLinks = [
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/juan.jose.6610?mibextid=ZbWKwL",
-    svgPath:
-      "M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2v-2.2c0-2.1 1.2-3.2 3-3.2.9 0 1.8.2 1.8.2v2h-1.1c-1.1 0-1.4.7-1.4 1.3v1.9h2.4l-.4 2.9h-2v7A10 10 0 0 0 22 12z",
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/juanjose2_1",
-    svgPath:
-      "M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/juan-josé-pérez-buriticá-frontend-dev/",
-    svgPath:
-      "M21,3H3v18h18V3z M9,17H6.477v-7H9V17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2 c0.771,0,1.286,0.514,1.286,1.2S8.551,8.717,7.694,8.717z M18,17h-2.442v-3.826c0-1.058-0.651-1.302-0.895-1.302 s-1.058,0.163-1.058,1.302c0,0.163,0,3.826,0,3.826h-2.523v-7h2.523v0.977C13.93,10.407,14.581,10,15.802,10 C17.023,10,18,10.977,18,13.174V17z",
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/juanjuanjose",
-    svgPath:
-      "M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z",
-  },
-];
+const SocialLinks = ({ small = false }) => {
+  const socialLinks = [
+    {
+      name: "GitHub",
+      url: "https://github.com/juanjuanjose",
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+      ),
+      color: "#6bffd0"
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/juan-jos%C3%A9-p%C3%A9rez-buritic%C3%A1-frontend-dev/",
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      ),
+      color: "#6B8BFF"
+    },
+    {
+      name: "Twitter",
+      url: "https://twitter.com/juanjose",
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+        </svg>
+      ),
+      color: "#FF6B8B"
+    },
+    {
+      name: "Email",
+      url: "mailto:juanjose@example.com",
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
+        </svg>
+      ),
+      color: "#6bffd0"
+    }
+  ];
 
-const SocialLinks = () => {
   return (
-    <div className="flex gap-5 mt-8 flex-wrap align-center justify-center flex-row">
-      {socialLinks.map(({ label, href, svgPath }) => (
+    <>
+      {socialLinks.map((link, index) => (
         <a
-          key={label}
-          className="text-[--color-secondary] text-2xl transition-all duration-300 hover:text-[--color-bluewhite] hover:-translate-y-1"
-          href={href}
-          aria-label={label}
+          key={index}
+          href={link.url}
           target="_blank"
+          rel="noopener noreferrer"
+          className={`
+            relative overflow-hidden group 
+            ${small ? 'p-2' : 'p-4'} 
+            rounded-full 
+            border border-transparent 
+            hover:border-[rgba(255,255,255,0.1)]
+            transition-all duration-300
+            hover:shadow-[0_5px_15px_rgba(107,255,208,0.15)]
+            hover:translate-y-[-3px]
+          `}
+          style={{
+            backgroundColor: `rgba(255,255,255,0.03)`,
+          }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="currentColor"
+          {/* Círculo de fondo animado */}
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full" 
+            style={{ backgroundColor: link.color }}
+          ></div>
+          
+          {/* Icono */}
+          <div 
+            className="relative z-10 transition-colors duration-300 text-gray-400 group-hover:text-white"
           >
-            <path d={svgPath} />
-          </svg>
+            {link.icon}
+          </div>
+          
+          {/* Tooltip con nombre (opcional) */}
+          {!small && (
+            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap px-2 py-1 bg-black bg-opacity-80 text-xs rounded opacity-0 group-hover:opacity-100 group-hover:-bottom-8 transition-all duration-300">
+              {link.name}
+            </div>
+          )}
         </a>
       ))}
-    </div>
+    </>
   );
 };
 

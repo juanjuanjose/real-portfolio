@@ -2,98 +2,212 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font-family: 'Roboto', sans-serif !important;
-  line-height: 1.6; 
-}
-
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
-  margin:0;
-  padding:0;
-}
-table {
-  border-collapse:collapse;
-  border-spacing:0;
-}
-fieldset,img { 
-  border:0;
-}
-
-ol,ul {
-  list-style:none;
-}
-caption,th {
-  text-align:left;
-}
-
-q:before,q:after {
-  content:'';
-}
-abbr,acronym { border:0;}
-
-:root{ 
-  --color-primary: #4A90E2;
-  --color-secondary: #E5E5E5;
-  --color-gray: #121212;
-  --color-bluewhite: #6bffd0;
-  --color-really-black: #000000;
+:root {
+  --color-primary: #94a3b8;
+  --color-secondary: #cbd5e1;
+  --color-bluewhite: #e0f2fe;
+  --color-blue: #48BFE3;
+  --color-teal: #64DFDF;
+  --color-slate: #8D99AE;
   --transition: all 0.3s ease;
-  --animation-h2: fadeInUp 1s ease forwards 0.5s;
-  --social-animation: translateY(-5px);
-
+  --animation-h2: floating 6s ease-in-out infinite;
 }
 
-* {
+body {
   margin: 0;
-  padding: 0;
-  scroll-behavior:smooth;
-}
-
-body{ line-height: 1.6;
-  color: var(--color-secondary);
-  background-color: var(--color-gray);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-really-black);
+  color: var(--color-primary);
   overflow-x: hidden;
 }
 
-p {
-  font-size: 18px;
-  color: var(--color-secondary);
-  margin-bottom: 30px;
-  text-align: center;
-  line-height: 1.8;
+html {
+  scroll-behavior: smooth;
 }
 
+section {
+  position: relative;
+}
 
-h2{
-  font-size: 36px !important;
+/* Estilos para títulos */
+h2 {
   color: var(--color-bluewhite);
+  font-size: 32px;
+  font-weight: 600;
   margin-bottom: 20px;
-  text-align: center;
+}
+
+h3 {
+  color: var(--color-primary);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.7;
+  color: var(--color-secondary);
+}
+
+/* Animaciones */
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Decoraciones de fondo */
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(100, 223, 223, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Personalización de scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 223, 223, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 223, 223, 0.5);
+}
+
+/* Gradientes para separadores y elementos decorativos */
+.gradient-border {
   position: relative;
-  padding-top: 67px;
 }
 
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-teal), var(--color-blue), var(--color-slate));
+  border-radius: 2px;
+}
 
-h3{
-  font-size: 26px;
-  margin-bottom: 20px;
+/* Estilos para las secciones principales */
+#Home {
   position: relative;
+  overflow: hidden;
 }
 
-
-
-
-*::-webkit-scrollbar {
-  width: 10px; 
-
+#Home::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100, 223, 223, 0.05) 0%, transparent 70%);
+  animation: pulse 8s infinite ease-in-out;
 }
 
-*::-webkit-scrollbar-thumb {
-  background-color: var(--color-bluewhite); 
-  border-radius: 8px; 
-  border: 2px solid #000000; 
+#Home::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(72, 191, 227, 0.05) 0%, transparent 70%);
+  animation: pulse 8s infinite ease-in-out reverse;
 }
 
-*::-webkit-scrollbar-track {
-  background-color: #000000; 
+/* Efectos hover para elementos clave */
+.hover-scale {
+  transition: var(--transition);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Media queries para responsive */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 28px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+  
+  #Home::before,
+  #Home::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Estilos especiales para sección de habilidades */
+#skills .ability-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#skills .ability-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(100, 223, 223, 0.2);
+}
+
+/* Mejoras para la sección de lugares de aprendizaje */
+@media (min-width: 768px) {
+  .learning-timeline {
+    position: relative;
+  }
+  
+  .learning-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-teal), var(--color-slate));
+    transform: translateX(-50%);
+  }
+}
+
+/* Efecto elegante para la sección de curriculum */
+#curriculum a:hover {
+  box-shadow: 0 10px 20px rgba(100, 223, 223, 0.25);
+}
+
+/* Efecto de tarjeta para proyectos */
+.project-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(72, 191, 227, 0.15);
 }
