@@ -44,7 +44,7 @@ const ProjectCard = ({ title, description, imgSrc, tags, githubUrl, demoUrl }) =
             rel="noopener noreferrer"
             className="text-sm px-4 py-2 bg-[#6bffd0] text-[#0f172a] rounded hover:bg-[#5ee2ba] font-medium transition-colors"
           >
-            Ver demo
+            See Demo
           </a>
 
           <a
@@ -56,7 +56,7 @@ const ProjectCard = ({ title, description, imgSrc, tags, githubUrl, demoUrl }) =
             <svg className="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0c-6.626 0-12 5.373-12 12...z" />
             </svg>
-            Código
+            View Code
           </a>
         </div>
       </div>

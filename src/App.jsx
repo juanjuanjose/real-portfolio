@@ -16,7 +16,7 @@ const ANIMATION_CONFIG = {
 };
 
 const TEXT_ANIMATIONS = [
-  { text: "Programador", color: "#64DFDF" },
+  { text: "Programmer", color: "#64DFDF" },
   { text: "Frontend", color: "#8D99AE" },
   { text: "Juan Jose", color: "#48BFE3" },
 ];
@@ -47,17 +47,17 @@ const SKILLS_DATA = {
 
 const PROJECTS_DATA = [
   {
-    title: "Sitio Web Misak",
-    description: "Un sitio web cultural sobre la comunidad Misak, desarrollado como proyecto en el SENA, donde me encargué del diseño y la creación de la interfaz.",
-    imgSrc: "public/images/misak.png",
+    title: "Misak website",
+    description: "A cultural website about the Misak community, developed as a project at SENA, where I was responsible for the design and interface.",
+    imgSrc: "././public/images/misak.png",
     tags: ["React", "JavaScript", "CSS", "API"],
     githubUrl: "https://github.com/jonathantombe/MisakGuambShop-Front",
     demoUrl: "https://misak-guamb-shop-front-qxyi.vercel.app/"
   },
   {
-    title: "Portafolio personal",
-    description: "Este es mi portafolio, el cual muestro mis habilidades sobre lo que he aprendido y lo que quiero aprender.",
-    imgSrc: "public/images/profile.png",
+    title: "Personal Portfolio",
+    description: "This is my personal portfolio, where I show my skills, what I’ve learned, and what I want to keep learning.",
+    imgSrc: "././public/images/profile.png",
     tags: ["React", "JavaScript", "CSS", "Tailwind"],
     githubUrl: "https://github.com/juanjuanjose/real-portfolio",
     demoUrl: "https://juanjuanjose.github.io/real-portfolio/"
@@ -174,10 +174,10 @@ function App() {
   useTextAnimation();
 
   const skillGroups = useMemo(() => [
-    { title: "Tecnologías principales", skills: SKILLS_DATA.main, emoji: "📦", color: "#64DFDF" },
-    { title: "Herramientas", skills: SKILLS_DATA.tools, emoji: "🛠️", color: "#48BFE3" },
-    { title: "Servicios", skills: SKILLS_DATA.services, emoji: "☁️", color: "#8D99AE" },
-    { title: "En proceso de aprendizaje", skills: SKILLS_DATA.learning, emoji: "🧠", color: "gray-400" }
+    { title: "Main Technologies", skills: SKILLS_DATA.main, emoji: "📦", color: "#64DFDF" },
+    { title: "Tools", skills: SKILLS_DATA.tools, emoji: "🛠️", color: "#48BFE3" },
+    { title: "Services", skills: SKILLS_DATA.services, emoji: "☁️", color: "#8D99AE" },
+    { title: "Currently Learning", skills: SKILLS_DATA.learning, emoji: "🧠", color: "gray-400" }
   ], []);
 
   return (
@@ -190,10 +190,10 @@ function App() {
           </div>
           <nav>
             <div className="flex-wrap justify-center py-[20px] gap-[25px] flex md:flex-row md:justify-center md:gap-[30px] md:items-center">
-              <NavLink href="#Home">INICIO</NavLink>
-              <NavLink href="#about">SOBRE MI</NavLink>
-              <NavLink href="#skills">HABILIDADES</NavLink>
-              <NavLink href="#projects">PROYECTOS</NavLink>
+              <NavLink href="#Home">HOME</NavLink>
+              <NavLink href="#about">ABOUT ME</NavLink>
+              <NavLink href="#skills">SKILLS</NavLink>
+              <NavLink href="#projects">PROJECTS</NavLink>
               <NavLink href="#curriculum">CURRICULUM</NavLink>
             </div>
           </nav>
@@ -215,112 +215,107 @@ function App() {
           />
         </div>
         
-        {/* Nueva sección de presentación moderna */}
-        <div className="flex flex-col items-center">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-[3px] w-8 bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></div>
-            <span className="text-[#64DFDF] text-sm uppercase tracking-wider font-medium">Bienvenido</span>
-            <div className="h-[3px] w-8 bg-gradient-to-r from-[#48BFE3] to-[#64DFDF]"></div>
-          </div>
-          
-          <h1 id="home--title" className="text-[28px] font-bold text-[--color-secondary] mb-2.5 md:text-[48px] text-center">
-            Soy <span id="title--name" className="text-[--color-bluewhite] relative inline-block">
-              <span className="text-[--color-bluewhite]">Juan Jose</span>
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></span>
-            </span>
-          </h1>
-          
-          <div className="flex items-center gap-3 mt-4">
-            <div className="h-[2px] w-6 bg-[#8D99AE] opacity-50"></div>
-            <h3 className="text-xl text-[--color-primary] animate-[--animation-h2] sm:text-2xl px-3 py-1 border border-[rgba(100,223,223,0.3)] rounded-full bg-[rgba(100,223,223,0.05)]">
-              Desarrollador Frontend
-            </h3>
-            <div className="h-[2px] w-6 bg-[#8D99AE] opacity-50"></div>
-          </div>
-          
-          <p className="text-center max-w-[500px] mt-6 text-gray-400 leading-relaxed">
-            Codigo con intención, diseño con propósito
-          </p>
-        </div>
-
-        <div className="flex gap-[20px] mt-12 flex-wrap justify-center">
-          <SocialLinks />
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="p-10 bg-gradient-to-b from-[#111827] to-[#0f172a]">
-        <Separator />
-        <div className={`max-w-[800px] my-0 mx-auto transition-all duration-1000 ${
-          isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <div>
-            <h2 className="relative inline-block pb-2 mb-6">
-              <span className="relative z-10">Sobre mí</span>
-              <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></span>
-            </h2>
-            <p className="text-lg leading-relaxed mb-8">
-              Soy desarrollador web junior con una base sólida en HTML, CSS y JavaScript.
-              Me especializo en crear interfaces modernas, responsivas y accesibles, utilizando
-              frameworks como Tailwind CSS y bibliotecas como React. Actualmente sigo
-              perfeccionando mis habilidades enfocándome en la creación de experiencias
-              interactivas, visualmente atractivas y funcionales desde el frontend.
-            </p>
-
-            <div className="mt-10">
-              <h2 className="relative inline-block pb-2 mb-6">
-                <span className="relative z-10">Lugares de aprendizaje</span>
-                <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#48BFE3] to-[#8D99AE]"></span>
-              </h2>
-              
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="bg-[rgba(255,255,255,0.05)] p-6 mb-2 transition-all duration-300 relative rounded-lg hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] border border-transparent hover:border-[rgba(100,223,223,0.2)] md:w-1/2">
-                  <div className="absolute top-0 right-0 bg-[#64DFDF] text-gray-800 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                    2021-2024
-                  </div>
-                  <h3 className="text-[#64DFDF] font-bold text-xl mb-3 mt-2">SENA</h3>
-                  <p className="text-gray-200">
-                    Durante mi formación de dos años en el SENA, adquirí sólidos
-                    conocimientos en desarrollo web, especializándome en HTML,
-                    CSS, JavaScript y React, con un enfoque en la creación de
-                    interfaces modernas y responsivas. En el proyecto formativo
-                    para la etapa de prácticas, fui responsable del diseño del
-                    sitio web Misak, el cual fue destacado por su propuesta
-                    innovadora, estética atractiva y representación cultural.
-                  </p>
-                  <img
-                    className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
-                    src="./images/sena.png"
-                    alt="sena image"
-                  />
-                </div>
-                
-                <div className="bg-[rgba(255,255,255,0.05)] p-6 mb-2 transition-all duration-300 relative rounded-lg hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] border border-transparent hover:border-[rgba(100,223,223,0.2)] md:w-1/2 md:mt-12">
-                  <div className="absolute top-0 right-0 bg-[#8D99AE] text-gray-800 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                    2019-2021
-                  </div>
-                  <h3 className="text-[#8D99AE] font-bold text-xl mb-3 mt-2">CASD</h3>
-                  <p className="text-gray-200">
-                    Durante los grados 10 y 11 en el CASD, cursé una formación
-                    tecnológica de dos años donde adquirí conocimientos en
-                    desarrollo de aplicaciones móviles con App Inventor,
-                    fundamentos de hardware y ciberseguridad, lo que me permitió
-                    desarrollar una base integral en tecnología y programación
-                    desde temprana edad.
-                  </p>
-                  <img
-                    className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
-                    src="./images/casd.png"
-                    alt="casd image"
-                  />
-                </div>
-              </div>
+        {/* Modern introduction section */}
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-[3px] w-8 bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></div>
+              <span className="text-[#64DFDF] text-sm uppercase tracking-wider font-medium">Welcome</span>
+              <div className="h-[3px] w-8 bg-gradient-to-r from-[#48BFE3] to-[#64DFDF]"></div>
             </div>
+            
+            <h1 id="home--title" className="text-[28px] font-bold text-[--color-secondary] mb-2.5 md:text-[48px] text-center">
+              I am <span id="title--name" className="text-[--color-bluewhite] relative inline-block">
+                <span className="text-[--color-bluewhite]">Juan Jose</span>
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></span>
+              </span>
+            </h1>
+            <div className="flex items-center gap-3 mt-4">
+              <div className="h-[2px] w-6 bg-[#8D99AE] opacity-50"></div>
+              <h3 className="text-xl text-[--color-primary] animate-[--animation-h2] sm:text-2xl px-3 py-1 border border-[rgba(100,223,223,0.3)] rounded-full bg-[rgba(100,223,223,0.05)]">
+                Frontend Developer
+              </h3>
+              <div className="h-[2px] w-6 bg-[#8D99AE] opacity-50"></div>
+            </div>
+            
+            <p className="text-center max-w-[500px] mt-6 text-gray-400 leading-relaxed">
+              Code with intention, design with purpose
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Skills Section */}
+          <div className="flex gap-[20px] mt-12 flex-wrap justify-center">
+            <SocialLinks />
+          </div>
+              </section>
+
+              {/* About Section */}
+                <section id="about" className="p-10 bg-gradient-to-b from-[#111827] to-[#0f172a]">
+                  <Separator />
+                  <div className={`max-w-[800px] my-0 mx-auto transition-all duration-1000 ${
+                    isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}>
+                    <div>
+                  <h2 className="relative inline-block pb-2 mb-6">
+                    <span className="relative z-10">About Me</span>
+                    <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></span>
+                  </h2>
+                  <p className="text-lg leading-relaxed mb-8">
+                    I am a junior web developer with a solid foundation in HTML, CSS, and JavaScript.
+                    I specialize in creating modern, responsive, and accessible interfaces using
+                    frameworks like Tailwind CSS and libraries like React. I am currently honing my
+                    skills, focusing on building interactive, visually appealing, and functional
+                    experiences from the frontend.
+                  </p>
+
+                  <div className="mt-10">
+                    <h2 className="relative inline-block pb-2 mb-6">
+                      <span className="relative z-10">Learning Places</span>
+                      <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#48BFE3] to-[#8D99AE]"></span>
+                    </h2>
+                    
+                    <div className="flex flex-col md:flex-row gap-6">
+                      <div className="bg-[rgba(255,255,255,0.05)] p-6 mb-2 transition-all duration-300 relative rounded-lg hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] border border-transparent hover:border-[rgba(100,223,223,0.2)] md:w-1/2">
+                    <div className="absolute top-0 right-0 bg-[#64DFDF] text-gray-800 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                      2021-2024
+                    </div>
+                    <h3 className="text-[#64DFDF] font-bold text-xl mb-3 mt-2">SENA</h3>
+                    <p className="text-gray-200">
+                      During my two-year training at SENA, I gained solid knowledge in web development,
+                      specializing in HTML, CSS, JavaScript, and React, with a focus on creating modern
+                      and responsive interfaces. In the formative project for the internship stage, I was
+                      responsible for the design of the Misak website, which was recognized for its
+                      innovative proposal, attractive aesthetics, and cultural representation.
+                    </p>
+                    <img
+                      className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
+                      src="./images/sena.png"
+                      alt="sena image"
+                    />
+                      </div>
+                      
+                      <div className="bg-[rgba(255,255,255,0.05)] p-6 mb-2 transition-all duration-300 relative rounded-lg hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] border border-transparent hover:border-[rgba(100,223,223,0.2)] md:w-1/2 md:mt-12">
+                    <div className="absolute top-0 right-0 bg-[#8D99AE] text-gray-800 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                      2019-2021
+                    </div>
+                    <h3 className="text-[#8D99AE] font-bold text-xl mb-3 mt-2">CASD</h3>
+                    <p className="text-gray-200">
+                      During grades 10 and 11 at CASD, I completed a two-year technological training
+                      program where I acquired knowledge in mobile application development with App
+                      Inventor, hardware fundamentals, and cybersecurity, which allowed me to develop
+                      a comprehensive foundation in technology and programming from an early age.
+                    </p>
+                    <img
+                      className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
+                      src="./images/casd.png"
+                      alt="casd image"
+                    />
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Skills Section */}
       <section id="skills" className="py-24 px-[5%] bg-gradient-to-b from-[#0f172a] to-[#0f1729]">
         <Separator />
         <div className={`transition-all duration-1000 ${
@@ -328,7 +323,7 @@ function App() {
         }`}>
           <div className="max-w-[800px] my-0 mx-auto">
             <h2 className="relative inline-block pb-2 mb-6">
-              <span className="relative z-10">Mis habilidades</span>
+              <span className="relative z-10">My Skills</span>
               <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#8D99AE] to-[#64DFDF]"></span>
             </h2>
             
@@ -372,12 +367,12 @@ function App() {
         <div className="curriculum_inner">
           <div className="max-w-[800px] my-0 mx-auto flex justify-center items-center flex-col">
             <h2 className="relative inline-block pb-2 mb-6">
-              <span className="relative z-10">Descarga mi hoja de vida</span>
+              <span className="relative z-10">Download my resume</span>
               <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#48BFE3] to-[#64DFDF]"></span>
             </h2>
             <p className="text-center max-w-[600px] mb-6">
-              Si deseas conocer más sobre mi formación académica y habilidades,
-              puedes descargar mi hoja de vida en el siguiente botón.
+              If you want to know more about my academic background and skills,
+              you can download my resume using the button below.
             </p>
             <svg
               className="text-[#64DFDF] text-[54px] transition-all duration-300 m-8 animate-bounce text-center"
@@ -410,7 +405,7 @@ function App() {
                   clipRule="evenodd"
                 />
               </svg>
-              Descargar CV
+              Download CV
             </a>
           </div>
         </div>
@@ -428,7 +423,7 @@ function App() {
             </div>
           </div>
           <div className="h-px w-full bg-gradient-to-r from-transparent via-[rgba(100,223,223,0.3)] to-transparent my-6"></div>
-          <p className="text-gray-400">© 2025 Juan Jose Perez Buritica - Todos los derechos reservados</p>
+          <p className="text-gray-400">© 2025 Juan Jose Perez Buritica - All rights reserved</p>
         </div>
       </footer>
     </>
