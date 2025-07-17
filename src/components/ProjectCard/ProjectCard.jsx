@@ -9,7 +9,7 @@ const ProjectCard = ({ title, description, imgSrc, tags, githubUrl, demoUrl }) =
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="h-48 overflow-hidden relative">
+      <div className="h-[260px] overflow-hidden relative">
         <img
           src={imgSrc || "/images/placeholder.jpg"}
           alt={title}

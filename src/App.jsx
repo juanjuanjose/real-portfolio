@@ -4,6 +4,7 @@ import meProfile from "../public/images/me-profile.png";
 import Separator from "./components/Separator/Separator";
 import Ability from "./components/Abilities/Ability";
 import curriculum from "../public/hojavida/hojavida.pdf";
+import curriculumenglish from "../public/hojavida/hojadevidaingles.pdf";
 import SocialLinks from "./components/Social/Social";
 import ProjectCard from "./components/ProjectCard/ProjectCard";
 import "./index.css";
@@ -38,10 +39,11 @@ const SKILLS_DATA = {
   services: [
     { imgSrc: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg", labelText: "Firebase", alt: "Firebase" },
     { imgSrc: "https://cdn.worldvectorlogo.com/logos/netlify.svg", labelText: "Netlify", alt: "Netlify" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/vercel.svg", labelText: "Vercel", alt: "Vercel" }
+    { imgSrc: "https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg", labelText: "Vercel", alt: "Vercel" }
   ],
   learning: [
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/typescript.svg", labelText: "TypeScript", alt: "TypeScript", className: "opacity-50" }
+    { imgSrc: "https://cdn.worldvectorlogo.com/logos/typescript.svg", labelText: "TypeScript", alt: "TypeScript", className: "opacity-50" },
+    { imgSrc: "https://www.vectorlogo.zone/logos/shopify/shopify-icon.svg", labelText: "Shopify", alt: "TypeScript", className: "opacity-50" }
   ]
 };
 
@@ -375,38 +377,108 @@ function App() {
               you can download my resume using the button below.
             </p>
             <svg
-              className="text-[#64DFDF] text-[54px] transition-all duration-300 m-8 animate-bounce text-center"
-              width="1em"
-              height="1em"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
-              />
-            </svg>
+                  className="text-[#64DFDF] text-[54px] transition-all duration-300 m-8 animate-bounce text-center"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                  />
+                </svg>
 
-            <a
-              className="bg-[rgba(74,144,226,0.1)] text-[--color-secondary] py-[25px] px-[45px] text-base rounded-3xl flex align-center gap-[10px] cursor-pointer no-underline hover:bg-[rgba(74,144,226,0.2)] hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] transition-all duration-300 border border-transparent hover:border-[rgba(100,223,223,0.3)]"
-              alt="button download"
-              href={curriculum}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg 
-                className="w-6 h-6 mr-2" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" 
-                  clipRule="evenodd"
-                />
-              </svg>
-              Download CV
-            </a>
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+                
+
+                <a
+      className="bg-[rgba(74,144,226,0.1)] text-[--color-secondary] py-[25px] px-[45px] text-base rounded-3xl flex align-center gap-[10px] cursor-pointer no-underline hover:bg-[rgba(74,144,226,0.2)] hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] transition-all duration-300 border border-transparent hover:border-[rgba(100,223,223,0.3)]"
+      alt="button download"
+      href={curriculumenglish}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg
+        className="w-6 h-6 mr-2"
+        viewBox="0 0 24 16"
+      >
+        <rect width="24" height="16" fill="#B22234"/>
+              <rect width="24" height="1.23" y="1.23" fill="#FFF"/>
+              <rect width="24" height="1.23" y="3.69" fill="#FFF"/>
+              <rect width="24" height="1.23" y="6.15" fill="#FFF"/>
+              <rect width="24" height="1.23" y="8.62" fill="#FFF"/>
+              <rect width="24" height="1.23" y="11.08" fill="#FFF"/>
+              <rect width="24" height="1.23" y="13.54" fill="#FFF"/>
+              <rect width="9.6" height="8.62" fill="#3C3B6E"/>
+              <g fill="#FFF">
+                <circle cx="1.2" cy="1.23" r="0.3"/>
+                <circle cx="2.4" cy="1.23" r="0.3"/>
+                <circle cx="3.6" cy="1.23" r="0.3"/>
+                <circle cx="4.8" cy="1.23" r="0.3"/>
+                <circle cx="6" cy="1.23" r="0.3"/>
+                <circle cx="7.2" cy="1.23" r="0.3"/>
+                <circle cx="8.4" cy="1.23" r="0.3"/>
+                <circle cx="1.8" cy="2.46" r="0.3"/>
+                <circle cx="3" cy="2.46" r="0.3"/>
+                <circle cx="4.2" cy="2.46" r="0.3"/>
+                <circle cx="5.4" cy="2.46" r="0.3"/>
+                <circle cx="6.6" cy="2.46" r="0.3"/>
+                <circle cx="7.8" cy="2.46" r="0.3"/>
+                <circle cx="1.2" cy="3.69" r="0.3"/>
+                <circle cx="2.4" cy="3.69" r="0.3"/>
+                <circle cx="3.6" cy="3.69" r="0.3"/>
+                <circle cx="4.8" cy="3.69" r="0.3"/>
+                <circle cx="6" cy="3.69" r="0.3"/>
+                <circle cx="7.2" cy="3.69" r="0.3"/>
+                <circle cx="8.4" cy="3.69" r="0.3"/>
+                <circle cx="1.8" cy="4.92" r="0.3"/>
+                <circle cx="3" cy="4.92" r="0.3"/>
+                <circle cx="4.2" cy="4.92" r="0.3"/>
+                <circle cx="5.4" cy="4.92" r="0.3"/>
+                <circle cx="6.6" cy="4.92" r="0.3"/>
+                <circle cx="7.8" cy="4.92" r="0.3"/>
+                <circle cx="1.2" cy="6.15" r="0.3"/>
+                <circle cx="2.4" cy="6.15" r="0.3"/>
+                <circle cx="3.6" cy="6.15" r="0.3"/>
+                <circle cx="4.8" cy="6.15" r="0.3"/>
+                <circle cx="6" cy="6.15" r="0.3"/>
+                <circle cx="7.2" cy="6.15" r="0.3"/>
+                <circle cx="8.4" cy="6.15" r="0.3"/>
+                <circle cx="1.8" cy="7.38" r="0.3"/>
+                <circle cx="3" cy="7.38" r="0.3"/>
+                <circle cx="4.2" cy="7.38" r="0.3"/>
+                <circle cx="5.4" cy="7.38" r="0.3"/>
+                <circle cx="6.6" cy="7.38" r="0.3"/>
+                <circle cx="7.8" cy="7.38" r="0.3"/>
+              </g>
+            </svg>
+            Download English CV
+          </a>
+
+    <a
+      className="bg-[rgba(74,144,226,0.1)] text-[--color-secondary] py-[25px] px-[45px] text-base rounded-3xl flex align-center gap-[10px] cursor-pointer no-underline hover:bg-[rgba(74,144,226,0.2)] hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] transition-all duration-300 border border-transparent hover:border-[rgba(100,223,223,0.3)]"
+      alt="button download"
+      href={curriculum}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {/* Bandera de España */}
+      <svg 
+        className="w-6 h-6 mr-2" 
+        viewBox="0 0 24 16"
+      >
+        <rect width="24" height="16" fill="#C60B1E"/>
+        <rect width="24" height="6.4" y="4.8" fill="#FFC400"/>
+        <g transform="translate(6, 8)">
+          <rect width="1.6" height="2.4" x="0.8" y="-1.2" fill="#C60B1E"/>
+          <rect width="2.4" height="1.6" x="0" y="-0.8" fill="#C60B1E"/>
+          <rect width="0.8" height="0.8" x="1.2" y="-0.4" fill="#FFC400"/>
+        </g>
+      </svg>
+      Download Spanish CV
+    </a>
+            </div>
           </div>
         </div>
       </section>
