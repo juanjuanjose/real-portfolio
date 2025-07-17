@@ -7,9 +7,11 @@ import curriculum from "../public/hojavida/hojavida.pdf";
 import curriculumenglish from "../public/hojavida/hojadevidaingles.pdf";
 import SocialLinks from "./components/Social/Social";
 import ProjectCard from "./components/ProjectCard/ProjectCard";
+import mypage from "../public/images/profile.png"
+import misakpage from "../public/images/misak.png"
 import "./index.css";
 
-// Constantes para evitar números mágicos y centralizar configuración
+
 const ANIMATION_CONFIG = {
   textChangeInterval: 4000,
   transitionDuration: 400,
@@ -51,7 +53,7 @@ const PROJECTS_DATA = [
   {
     title: "Misak website",
     description: "A cultural website about the Misak community, developed as a project at SENA, where I was responsible for the design and interface.",
-    imgSrc: "././public/images/misak.png",
+    imgSrc: misakpage,
     tags: ["React", "JavaScript", "CSS", "API"],
     githubUrl: "https://github.com/jonathantombe/MisakGuambShop-Front",
     demoUrl: "https://misak-guamb-shop-front-qxyi.vercel.app/"
@@ -59,14 +61,14 @@ const PROJECTS_DATA = [
   {
     title: "Personal Portfolio",
     description: "This is my personal portfolio, where I show my skills, what I’ve learned, and what I want to keep learning.",
-    imgSrc: "././public/images/profile.png",
+    imgSrc: mypage,
     tags: ["React", "JavaScript", "CSS", "Tailwind"],
     githubUrl: "https://github.com/juanjuanjose/real-portfolio",
     demoUrl: "https://juanjuanjose.github.io/real-portfolio/"
   },
 ];
 
-// Hook personalizado para manejar la visibilidad de secciones
+
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState({
     skills: false,
@@ -96,7 +98,6 @@ const useIntersectionObserver = () => {
   return isVisible;
 };
 
-// Hook personalizado para la animación de texto
 const useTextAnimation = () => {
   useEffect(() => {
     const titleElement = document.getElementById("title--name");
