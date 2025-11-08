@@ -1,505 +1,733 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
-import NavLink from "./components/NavLink/NavLink";
-import meProfile from "../public/images/me-profile.png";
-import Separator from "./components/Separator/Separator";
-import Ability from "./components/Abilities/Ability";
-import curriculum from "../public/hojavida/hojavida.pdf";
-import curriculumenglish from "../public/hojavida/hojadevidaingles.pdf";
-import SocialLinks from "./components/Social/Social";
-import ProjectCard from "./components/ProjectCard/ProjectCard";
-import mypage from "../public/images/profile.png"
-import misakpage from "../public/images/misak.png"
-import "./index.css";
-
+import { useEffect, useState } from "react";
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  ExternalLink, 
+  Code, 
+  Calendar, 
+  Award, 
+  TrendingUp,
+  Code2,
+  FileCode,
+  Palette,
+  Layout,
+  FileText,
+  ShoppingBag,
+  BookOpen,
+  TestTube,
+  Route,
+  Package
+} from "lucide-react";
 
 const ANIMATION_CONFIG = {
-  textChangeInterval: 4000,
+  textChangeInterval: 3000,
   transitionDuration: 400,
-  observerThreshold: 0.3
+  observerThreshold: 0.2
 };
 
-const TEXT_ANIMATIONS = [
-  { text: "Programmer", color: "#64DFDF" },
-  { text: "Frontend", color: "#8D99AE" },
-  { text: "Juan Jose", color: "#48BFE3" },
+const TYPING_TEXTS = [
+  "Desarrollador Frontend",
+  "Creador de Interfaces"
 ];
 
 const SKILLS_DATA = {
-  main: [
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/html-1.svg", labelText: "HTML", alt: "HTML" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/css-3.svg", labelText: "CSS", alt: "CSS" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/javascript-1.svg", labelText: "JavaScript", alt: "Javascript" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/tailwindcss.svg", labelText: "Tailwind", alt: "Tailwind" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/react-2.svg", labelText: "React", alt: "React" }
+  frontend: [
+    { name: "React", level: 60, color: "#7C3AED", iconName: "Code2" },
+    { name: "JavaScript", level: 40, color: "#F59E0B", iconName: "FileCode" },
+    { name: "Tailwind CSS", level: 60, color: "#8B5CF6", iconName: "Palette" },
+    { name: "HTML & CSS", level: 75, color: "#EC4899", iconName: "Layout" }
   ],
-  tools: [
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/git-icon.svg", labelText: "Git", alt: "Git" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/github-icon-1.svg", labelText: "GitHub", alt: "GitHub" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/vitejs.svg", labelText: "Vite", alt: "Vite" },
-    { imgSrc: "https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/figma.svg", labelText: "Figma", alt: "Figma" }
-  ],
-  services: [
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg", labelText: "Firebase", alt: "Firebase" },
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/netlify.svg", labelText: "Netlify", alt: "Netlify" },
-    { imgSrc: "https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg", labelText: "Vercel", alt: "Vercel" }
-  ],
-  learning: [
-    { imgSrc: "https://cdn.worldvectorlogo.com/logos/typescript.svg", labelText: "TypeScript", alt: "TypeScript", className: "opacity-50" },
-    { imgSrc: "https://www.vectorlogo.zone/logos/shopify/shopify-icon.svg", labelText: "Shopify", alt: "TypeScript", className: "opacity-50" }
+  cms: [
+    { name: "WordPress", level: 70, color: "#6366F1", iconName: "FileText" },
+    { name: "Shopify", level: 50, color: "#A855F7", iconName: "ShoppingBag" }
   ]
 };
 
-const PROJECTS_DATA = [
+const EXPERIENCE_DATA = [
   {
-    title: "Misak website",
-    description: "A cultural website about the Misak community, developed as a project at SENA, where I was responsible for the design and interface.",
-    imgSrc: misakpage,
-    tags: ["React", "JavaScript", "CSS", "API"],
-    githubUrl: "https://github.com/jonathantombe/MisakGuambShop-Front",
-    demoUrl: "https://misak-guamb-shop-front-qxyi.vercel.app/"
+    title: "Practicante Frontend",
+    company: "Hotel Mocawa",
+    period: "6 meses - 2024",
+    type: "Práctica SENA",
+    achievements: [
+      "Gestión y mantenimiento del sitio web con +500 visitas mensuales",
+      "Optimización de formularios de contacto y sistema de reservas",
+      "Implementación de actualizaciones de contenido semanales",
+      "Resolución de problemas técnicos relacionados con UX y rendimiento"
+    ],
+    tech: ["WordPress", "Hostinger", "CSS", "JavaScript"]
   },
   {
-    title: "Personal Portfolio",
-    description: "This is my personal portfolio, where I show my skills, what I’ve learned, and what I want to keep learning.",
-    imgSrc: mypage,
-    tags: ["React", "JavaScript", "CSS", "Tailwind"],
-    githubUrl: "https://github.com/juanjuanjose/real-portfolio",
-    demoUrl: "https://juanjuanjose.github.io/real-portfolio/"
-  },
+    title: "Desarrollador Frontend",
+    company: "Proyecto Misak - SENA",
+    period: "2024",
+    type: "Proyecto Formativo",
+    achievements: [
+      "Diseño e implementación de sitio web cultural de la comunidad Misak",
+      "Responsable del diseño UI/UX completo del proyecto",
+      "Integración con API REST para funcionalidades del sistema",
+      "Colaboración efectiva en equipo multidisciplinario"
+    ],
+    tech: ["React", "JavaScript", "CSS", "API"]
+  }
 ];
 
+const PROJECTS_DATA = [
+  {
+    title: "Sitio Web Misak",
+    description: "Plataforma web enfocada en la preservación cultural de la comunidad Misak. Desarrollo integral del frontend con énfasis en diseño responsivo y accesibilidad.",
+    image: "public/images/misak.png",
+    tags: ["React", "JavaScript", "CSS", "API"],
+    githubUrl: "https://github.com/jonathantombe/MisakGuambShop-Front",
+    demoUrl: "https://misak-guamb-shop-front-qxyi.vercel.app/",
+    featured: true
+  },
+  {
+    title: "Portfolio Personal",
+    description: "Sitio personal desarrollado para mostrar proyectos y habilidades técnicas. Implementación de animaciones y diseño moderno.",
+    image: "",
+    tags: ["React", "JavaScript", "Tailwind", "CSS"],
+    githubUrl: "https://github.com/juanjuanjose/real-portfolio",
+    demoUrl: "https://juanjuanjose.github.io/real-portfolio/"
+  }
+];
+
+const LEARNING_DATA = [
+  { name: "TypeScript", iconName: "BookOpen", status: "En progreso" },
+  { name: "React Testing Library", iconName: "TestTube", status: "Próximamente" },
+  { name: "React Router", iconName: "Route", status: "En progreso" },
+  { name: "Zustand", iconName: "Package", status: "Próximamente" }
+];
+
+const useTypingEffect = () => {
+  const [displayText, setDisplayText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentText = TYPING_TEXTS[textIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (displayText.length < currentText.length) {
+          setDisplayText(currentText.slice(0, displayText.length + 1));
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        if (displayText.length > 0) {
+          setDisplayText(displayText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setTextIndex((prev) => (prev + 1) % TYPING_TEXTS.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, textIndex]);
+
+  return displayText;
+};
 
 const useIntersectionObserver = () => {
-  const [isVisible, setIsVisible] = useState({
-    skills: false,
-    projects: false,
-    about: false
-  });
+  const [visibleSections, setVisibleSections] = useState(new Set());
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          const id = entry.target.getAttribute('id');
-          if (entry.isIntersecting && id) {
-            setIsVisible(prev => ({ ...prev, [id]: true }));
+          if (entry.isIntersecting) {
+            setVisibleSections(prev => new Set([...prev, entry.target.id]));
           }
         });
-      }, 
+      },
       { threshold: ANIMATION_CONFIG.observerThreshold }
     );
-    
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach(section => observer.observe(section));
-    
+
+    document.querySelectorAll('section[id]').forEach(section => {
+      observer.observe(section);
+    });
+
     return () => observer.disconnect();
   }, []);
 
-  return isVisible;
+  return visibleSections;
 };
 
-const useTextAnimation = () => {
+const SkillBar = ({ skill, isVisible }) => {
+  const [progress, setProgress] = useState(0);
+  
+  const iconComponents = {
+    Code2,
+    FileCode,
+    Palette,
+    Layout,
+    FileText,
+    ShoppingBag
+  };
+  
+  const IconComponent = iconComponents[skill.iconName];
+
   useEffect(() => {
-    const titleElement = document.getElementById("title--name");
-    const subtitleElement = document.getElementById("home--title");
-    
-    if (!titleElement || !subtitleElement) return;
-
-    let index = 0;
-
-    const animateText = () => {
-      const { color, text } = TEXT_ANIMATIONS[index];
-      
-      // Fade out
-      [titleElement, subtitleElement].forEach(el => {
-        el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-        el.style.opacity = "0";
-        el.style.transform = "translateY(-20px)";
-      });
-
-      setTimeout(() => {
-        // Update content
-        const newSpan = `<span style="color: ${color};">${text}</span>`;
-        titleElement.innerHTML = titleElement.innerHTML.replace(
-          /<span.*?>.*?<\/span>/,
-          newSpan
-        );
-        subtitleElement.innerHTML = subtitleElement.innerHTML.replace(
-          /<span.*?>.*?<\/span>/,
-          newSpan
-        );
-
-        index = (index + 1) % TEXT_ANIMATIONS.length;
-
-        // Prepare for fade in
-        [titleElement, subtitleElement].forEach(el => {
-          el.style.transform = "translateY(20px)";
-        });
-
-        // Fade in
-        requestAnimationFrame(() => {
-          [titleElement, subtitleElement].forEach(el => {
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-          });
-        });
-      }, ANIMATION_CONFIG.transitionDuration);
-    };
-
-    const interval = setInterval(animateText, ANIMATION_CONFIG.textChangeInterval);
-    return () => clearInterval(interval);
-  }, []);
-};
-
-// Componente para renderizar grupos de habilidades
-const SkillGroup = ({ title, skills, emoji, color }) => (
-  <div className="mb-16">
-    <h3 className={`text-lg font-semibold text-[${color}] mb-4`}>
-      {emoji} {title}
-    </h3>
-    <div className="flex justify-center gap-[20px] flex-wrap mb-10">
-      {skills.map((skill, index) => (
-        <Ability
-          key={`${skill.labelText}-${index}`}
-          imgSrc={skill.imgSrc}
-          labelText={skill.labelText}
-          alt={skill.alt}
-          className={skill.className}
-        />
-      ))}
-    </div>
-  </div>
-);
-
-// Componente principal
-function App() {
-  const isVisible = useIntersectionObserver();
-  useTextAnimation();
-
-  const skillGroups = useMemo(() => [
-    { title: "Main Technologies", skills: SKILLS_DATA.main, emoji: "📦", color: "#64DFDF" },
-    { title: "Tools", skills: SKILLS_DATA.tools, emoji: "🛠️", color: "#48BFE3" },
-    { title: "Services", skills: SKILLS_DATA.services, emoji: "☁️", color: "#8D99AE" },
-    { title: "Currently Learning", skills: SKILLS_DATA.learning, emoji: "🧠", color: "gray-400" }
-  ], []);
+    if (isVisible) {
+      const timer = setTimeout(() => setProgress(skill.level), 200);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, skill.level]);
 
   return (
-    <>
-      {/* Header */}
-      <header className="fixed top-0 inset-x-0 bg-[rgba(18,18,18,0.9)] backdrop-blur-[10px] z-[1000] shadow-[0_4px_15px_rgba(100,223,223,0.15)]">
-        <div className="flex flex-col items-center py-[15px] px-[10%] mx-0 my-auto md:gap-[20px] md:justify-between md:flex-row md:px-[17.6%] md:py-[11px]">
-          <div className="text-2xl font-bold text-[--color-bluewhite] cursor-pointer transform hover:scale-105 transition duration-300">
-            <h1>MY PORTFOLIO</h1>
+    <div className="mb-6">
+      <div className="flex justify-between items-center mb-2">
+        <div className="flex items-center gap-2">
+          {IconComponent && <IconComponent size={20} className="text-gray-400" />}
+          <span className="text-gray-200 font-medium">{skill.name}</span>
+        </div>
+        <span className="text-gray-400 font-bold">{skill.level}%</span>
+      </div>
+      <div className="h-3 bg-gray-800/80 rounded-full overflow-hidden">
+        <div
+          className="h-full rounded-full transition-all duration-1000 ease-out"
+          style={{
+            width: `${progress}%`,
+            background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const ProjectCard = ({ project }) => {
+  return (
+    <div className="group relative bg-gray-800/40 rounded-xl overflow-hidden border border-gray-700/50 hover:border-purple-500/40 transition-all duration-300">
+      {project.featured && (
+        <div className="absolute top-4 right-4 z-10 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+          Destacado
+        </div>
+      )}
+      
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
+      </div>
+
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-white mb-3">
+          {project.title}
+        </h3>
+        <p className="text-gray-400 mb-4 leading-relaxed text-sm">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.map((tag, i) => (
+            <span
+              key={i}
+              className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-md text-xs border border-purple-500/20"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex gap-3">
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 bg-purple-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
+          >
+            <ExternalLink size={16} />
+            Ver Demo
+          </a>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 bg-gray-700/50 text-gray-200 px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+          >
+            <Github size={16} />
+            Código
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ExperienceItem = ({ experience }) => {
+  return (
+    <div className="relative pl-8 pb-12 last:pb-0">
+      <div className="absolute left-0 top-0 w-4 h-4 bg-purple-600 rounded-full border-4 border-gray-900" />
+      <div className="absolute left-[7px] top-4 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 to-transparent last:hidden" />
+      
+      <div className="bg-gray-800/40 rounded-xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-300">
+        <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-1">{experience.title}</h3>
+            <p className="text-purple-400 font-semibold">{experience.company}</p>
           </div>
-          <nav>
-            <div className="flex-wrap justify-center py-[20px] gap-[25px] flex md:flex-row md:justify-center md:gap-[30px] md:items-center">
-              <NavLink href="#Home">HOME</NavLink>
-              <NavLink href="#about">ABOUT ME</NavLink>
-              <NavLink href="#skills">SKILLS</NavLink>
-              <NavLink href="#projects">PROJECTS</NavLink>
-              <NavLink href="#curriculum">CURRICULUM</NavLink>
+          <div className="flex flex-col items-end">
+            <span className="text-sm bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">
+              {experience.period}
+            </span>
+            <span className="text-xs text-gray-400 mt-1">{experience.type}</span>
+          </div>
+        </div>
+
+        <ul className="space-y-2 mb-4">
+          {experience.achievements.map((achievement, i) => (
+            <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
+              <span className="text-purple-400 mt-1">•</span>
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-wrap gap-2">
+          {experience.tech.map((tech, i) => (
+            <span
+              key={i}
+              className="px-3 py-1 bg-gray-700/50 text-gray-300 rounded-md text-xs"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+function App() {
+  const typingText = useTypingEffect();
+  const visibleSections = useIntersectionObserver();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
+      <header className="fixed top-0 inset-x-0 bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-800/50">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className="text-2xl font-bold text-white">
+              JJ
             </div>
-          </nav>
+            <nav className="hidden md:flex gap-8">
+              {['Inicio', 'Sobre Mí', 'Experiencia', 'Habilidades', 'Proyectos', 'Contacto'].map(item => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  className="text-gray-300 hover:text-purple-400 transition-colors text-sm font-medium"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section
-        id="Home"
-        className="px-[5%] py-[110%] flex flex-col items-center justify-center h-screen bg-gradient-to-r from-[#1a202c] to-[#111827] sm:py-[224px]"
-      >
-        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-10"></div>
-        <div className="relative">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-[#64DFDF] via-[#48BFE3] to-[#8D99AE] rounded-full blur opacity-75 animate-pulse"></div>
-          <img
-            className="relative w-[200px] h-[200px] rounded-full object-cover border-[3px] border-[--color-bluewhite] mb-8 shadow-[0_0_20px_rgba(100,223,223,0.3)]"
-            src={meProfile}
-            alt="Profile"
-          />
-        </div>
-        
-        {/* Modern introduction section */}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-[3px] w-8 bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></div>
-              <span className="text-[#64DFDF] text-sm uppercase tracking-wider font-medium">Welcome</span>
-              <div className="h-[3px] w-8 bg-gradient-to-r from-[#48BFE3] to-[#64DFDF]"></div>
+      <section id="inicio" className="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="relative inline-block mb-8">
+            <div className="w-64 h-80 rounded-full border-2 border-purple-500/40 p-1 bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg">
+              <div className="w-full h-full rounded-full overflow-hidden">
+                <img
+                  src="public/images/yo.jpg"
+                  alt="Foto de perfil"
+                  className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
+                />
+              </div>
             </div>
-            
-            <h1 id="home--title" className="text-[28px] font-bold text-[--color-secondary] mb-2.5 md:text-[48px] text-center">
-              I am <span id="title--name" className="text-[--color-bluewhite] relative inline-block">
-                <span className="text-[--color-bluewhite]">Juan Jose</span>
-                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></span>
-              </span>
-            </h1>
-            <div className="flex items-center gap-3 mt-4">
-              <div className="h-[2px] w-6 bg-[#8D99AE] opacity-50"></div>
-              <h3 className="text-xl text-[--color-primary] animate-[--animation-h2] sm:text-2xl px-3 py-1 border border-[rgba(100,223,223,0.3)] rounded-full bg-[rgba(100,223,223,0.05)]">
-                Frontend Developer
-              </h3>
-              <div className="h-[2px] w-6 bg-[#8D99AE] opacity-50"></div>
-            </div>
-            
-            <p className="text-center max-w-[500px] mt-6 text-gray-400 leading-relaxed">
-              Code with intention, design with purpose
-            </p>
           </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            Hola, soy{" "}
+            <span className="bg-gradient-to-r from-violet-400 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">
+              Juan José
+            </span>
+          </h1>
 
-          <div className="flex gap-[20px] mt-12 flex-wrap justify-center">
-            <SocialLinks />
-          </div>
-              </section>
-
-              {/* About Section */}
-                <section id="about" className="p-10 bg-gradient-to-b from-[#111827] to-[#0f172a]">
-                  <Separator />
-                  <div className={`max-w-[800px] my-0 mx-auto transition-all duration-1000 ${
-                    isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}>
-                    <div>
-                  <h2 className="relative inline-block pb-2 mb-6">
-                    <span className="relative z-10">About Me</span>
-                    <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#64DFDF] to-[#48BFE3]"></span>
-                  </h2>
-                  <p className="text-lg leading-relaxed mb-8">
-                    I am a junior web developer with a solid foundation in HTML, CSS, and JavaScript.
-                    I specialize in creating modern, responsive, and accessible interfaces using
-                    frameworks like Tailwind CSS and libraries like React. I am currently honing my
-                    skills, focusing on building interactive, visually appealing, and functional
-                    experiences from the frontend.
-                  </p>
-
-                  <div className="mt-10">
-                    <h2 className="relative inline-block pb-2 mb-6">
-                      <span className="relative z-10">Learning Places</span>
-                      <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#48BFE3] to-[#8D99AE]"></span>
-                    </h2>
-                    
-                    <div className="flex flex-col md:flex-row gap-6">
-                      <div className="bg-[rgba(255,255,255,0.05)] p-6 mb-2 transition-all duration-300 relative rounded-lg hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] border border-transparent hover:border-[rgba(100,223,223,0.2)] md:w-1/2">
-                    <div className="absolute top-0 right-0 bg-[#64DFDF] text-gray-800 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                      2021-2024
-                    </div>
-                    <h3 className="text-[#64DFDF] font-bold text-xl mb-3 mt-2">SENA</h3>
-                    <p className="text-gray-200">
-                      During my two-year training at SENA, I gained solid knowledge in web development,
-                      specializing in HTML, CSS, JavaScript, and React, with a focus on creating modern
-                      and responsive interfaces. In the formative project for the internship stage, I was
-                      responsible for the design of the Misak website, which was recognized for its
-                      innovative proposal, attractive aesthetics, and cultural representation.
-                    </p>
-                    <img
-                      className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
-                      src="./images/sena.png"
-                      alt="sena image"
-                    />
-                      </div>
-                      
-                      <div className="bg-[rgba(255,255,255,0.05)] p-6 mb-2 transition-all duration-300 relative rounded-lg hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] border border-transparent hover:border-[rgba(100,223,223,0.2)] md:w-1/2 md:mt-12">
-                    <div className="absolute top-0 right-0 bg-[#8D99AE] text-gray-800 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                      2019-2021
-                    </div>
-                    <h3 className="text-[#8D99AE] font-bold text-xl mb-3 mt-2">CASD</h3>
-                    <p className="text-gray-200">
-                      During grades 10 and 11 at CASD, I completed a two-year technological training
-                      program where I acquired knowledge in mobile application development with App
-                      Inventor, hardware fundamentals, and cybersecurity, which allowed me to develop
-                      a comprehensive foundation in technology and programming from an early age.
-                    </p>
-                    <img
-                      className="max-w-full h-14 rounded mt-3.5 absolute right-[0.94rem] bottom-[0.94rem] pt-4"
-                      src="./images/casd.png"
-                      alt="casd image"
-                    />
-                      </div>
-                    </div>
-                  </div>
-                    </div>
-                  </div>
-                </section>
-
-                {/* Skills Section */}
-      <section id="skills" className="py-24 px-[5%] bg-gradient-to-b from-[#0f172a] to-[#0f1729]">
-        <Separator />
-        <div className={`transition-all duration-1000 ${
-          isVisible.skills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <div className="max-w-[800px] my-0 mx-auto">
-            <h2 className="relative inline-block pb-2 mb-6">
-              <span className="relative z-10">My Skills</span>
-              <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#8D99AE] to-[#64DFDF]"></span>
+          <div className="h-16 mb-8">
+            <h2 className="text-2xl md:text-3xl text-gray-300 font-light">
+              {typingText}
+              <span className="animate-pulse">|</span>
             </h2>
+          </div>
+
+          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+            Desarrollador enfocado en crear interfaces web intuitivas y funcionales. 
+            Trabajo principalmente con React y me enfoco en escribir código limpio y mantenible.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="bg-gray-800/50 px-5 py-2.5 rounded-full border border-gray-700/50 text-sm">
+              <div className="flex items-center gap-2">
+                <Calendar className="text-purple-400" size={18} />
+                <span className="text-gray-300">6 meses de experiencia</span>
+              </div>
+            </div>
             
-            {skillGroups.map((group, index) => (
-              <SkillGroup
-                key={`skill-group-${index}`}
-                title={group.title}
-                skills={group.skills}
-                emoji={group.emoji}
-                color={group.color}
-              />
+            {/* <div className="bg-gray-800/50 px-5 py-2.5 rounded-full border border-gray-700/50 text-sm">
+              <div className="flex items-center gap-2">
+                <Code className="text-purple-400" size={18} />
+                <span className="text-gray-300">2 proyectos en producción</span>
+              </div>
+            </div> */}
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="#proyectos"
+              className="px-8 py-3 bg-purple-600 rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center gap-2"
+            >
+              Ver Proyectos
+              <ExternalLink size={18} />
+            </a>
+            <a
+              href="#contacto"
+              className="px-8 py-3 bg-gray-800 border border-gray-700 rounded-lg font-medium hover:border-gray-600 transition-colors"
+            >
+              Contáctame
+            </a>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-12">
+            <a
+              href="https://github.com/juanjuanjose"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href="https://linkedin.com/in/juanjperezb"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a
+              href="mailto:juanjoperez2121@gmail.com"
+              className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+            >
+              <Mail size={20} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="sobre-mí"
+        className={`py-24 px-6 transition-all duration-1000 ${
+          visibleSections.has('sobre-mí') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-center text-white">
+            Sobre Mí
+          </h2>
+          <div className="h-1 w-20 bg-purple-600 mx-auto mb-12 rounded-full" />
+
+          <div className="bg-gray-800/40 rounded-xl p-8 border border-gray-700/50">
+            <p className="text-base text-gray-300 leading-relaxed mb-6">
+              Desarrollador web con formación en análisis y desarrollo de software. Cuento con experiencia práctica en la creación de interfaces responsivas y funcionales, utilizando tecnologías modernas como React y Tailwind CSS.
+            </p>
+            <p className="text-base text-gray-300 leading-relaxed mb-6">
+              Me interesa seguir aprendiendo y mejorando mis habilidades en el desarrollo frontend, con especial atención a las mejores prácticas de código y experiencia de usuario.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 mt-8">
+              <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700/50">
+                <h3 className="text-purple-400 font-bold text-base mb-3 flex items-center gap-2">
+                  <Award size={20} />
+                  Formación
+                </h3>
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  <li>
+                    <div className="font-semibold">Ingeniería en Sistemas</div>
+                    <div className="text-xs text-gray-400">UNAD - En curso</div>
+                  </li>
+                  <li>
+                    <div className="font-semibold">Análisis y Desarrollo de Software</div>
+                    <div className="text-xs text-gray-400">SENA - 2023-2025</div>
+                  </li>
+                  <li>
+                    <div className="font-semibold">Bachiller Técnico</div>
+                    <div className="text-xs text-gray-400">CASD - 2021</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700/50">
+                <h3 className="text-purple-400 font-bold text-base mb-3 flex items-center gap-2">
+                  <TrendingUp size={20} />
+                  Competencias
+                </h3>
+                <ul className="space-y-2 text-gray-300 text-sm">
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-400">•</span>
+                    Comunicación efectiva
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-400">•</span>
+                    Trabajo colaborativo
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-400">•</span>
+                    Resolución de problemas
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-400">•</span>
+                    Aprendizaje continuo
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-400">•</span>
+                    Adaptabilidad
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="experiencia"
+        className={`py-24 px-6 bg-gray-900/50 transition-all duration-1000 ${
+          visibleSections.has('experiencia') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-center text-white">
+            Experiencia
+          </h2>
+          <div className="h-1 w-20 bg-purple-600 mx-auto mb-12 rounded-full" />
+
+          <div className="relative">
+            {EXPERIENCE_DATA.map((exp, index) => (
+              <ExperienceItem key={index} experience={exp} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-24 px-[5%] bg-gradient-to-b from-[#0f1729] to-[#111827]">
-        <Separator />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS_DATA.map((project, index) => (
-            <ProjectCard
-              key={`project-${index}`}
-              title={project.title}
-              description={project.description}
-              imgSrc={project.imgSrc}
-              tags={project.tags}
-              githubUrl={project.githubUrl}
-              demoUrl={project.demoUrl}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Curriculum Section */}
       <section
-        id="curriculum"
-        className="py-24 px-[5%] bg-gradient-to-b from-[#111827] to-[#1a202c]"
+        id="habilidades"
+        className={`py-24 px-6 transition-all duration-1000 ${
+          visibleSections.has('habilidades') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
       >
-        <Separator />
-        <div className="curriculum_inner">
-          <div className="max-w-[800px] my-0 mx-auto flex justify-center items-center flex-col">
-            <h2 className="relative inline-block pb-2 mb-6">
-              <span className="relative z-10">Download my resume</span>
-              <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-[#48BFE3] to-[#64DFDF]"></span>
-            </h2>
-            <p className="text-center max-w-[600px] mb-6">
-              If you want to know more about my academic background and skills,
-              you can download my resume using the button below.
-            </p>
-            <svg
-                  className="text-[#64DFDF] text-[54px] transition-all duration-300 m-8 animate-bounce text-center"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
-                  />
-                </svg>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-center text-white">
+            Habilidades
+          </h2>
+          <div className="h-1 w-20 bg-purple-600 mx-auto mb-12 rounded-full" />
 
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-800/40 rounded-xl p-8 border border-gray-700/50">
+              <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                <Code size={24} />
+                Frontend
+              </h3>
+              {SKILLS_DATA.frontend.map((skill, i) => (
+                <SkillBar key={i} skill={skill} isVisible={visibleSections.has('habilidades')} />
+              ))}
+            </div>
+
+            <div className="space-y-8">
+              <div className="bg-gray-800/40 rounded-xl p-8 border border-gray-700/50">
+                <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                  📝 CMS
+                </h3>
+                {SKILLS_DATA.cms.map((skill, i) => (
+                  <SkillBar key={i} skill={skill} isVisible={visibleSections.has('habilidades')} />
+                ))}
+              </div>
+
+              <div className="bg-gray-800/40 rounded-xl p-8 border border-gray-700/50">
+              <h3 className="text-xl font-bold text-amber-400 mb-6">
+              🧠 En aprendizaje
+              </h3>
+              <div className="space-y-3">
+              {LEARNING_DATA.map((item, i) => {
+                const iconComponents = {
+                  BookOpen,
+                  TestTube,
+                  Route,
+                  Package
+                };
+                const IconComponent = iconComponents[item.iconName];
                 
-
-                <a
-      className="bg-[rgba(74,144,226,0.1)] text-[--color-secondary] py-[25px] px-[45px] text-base rounded-3xl flex align-center gap-[10px] cursor-pointer no-underline hover:bg-[rgba(74,144,226,0.2)] hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] transition-all duration-300 border border-transparent hover:border-[rgba(100,223,223,0.3)]"
-      alt="button download"
-      href={curriculumenglish}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <svg
-        className="w-6 h-6 mr-2"
-        viewBox="0 0 24 16"
-      >
-        <rect width="24" height="16" fill="#B22234"/>
-              <rect width="24" height="1.23" y="1.23" fill="#FFF"/>
-              <rect width="24" height="1.23" y="3.69" fill="#FFF"/>
-              <rect width="24" height="1.23" y="6.15" fill="#FFF"/>
-              <rect width="24" height="1.23" y="8.62" fill="#FFF"/>
-              <rect width="24" height="1.23" y="11.08" fill="#FFF"/>
-              <rect width="24" height="1.23" y="13.54" fill="#FFF"/>
-              <rect width="9.6" height="8.62" fill="#3C3B6E"/>
-              <g fill="#FFF">
-                <circle cx="1.2" cy="1.23" r="0.3"/>
-                <circle cx="2.4" cy="1.23" r="0.3"/>
-                <circle cx="3.6" cy="1.23" r="0.3"/>
-                <circle cx="4.8" cy="1.23" r="0.3"/>
-                <circle cx="6" cy="1.23" r="0.3"/>
-                <circle cx="7.2" cy="1.23" r="0.3"/>
-                <circle cx="8.4" cy="1.23" r="0.3"/>
-                <circle cx="1.8" cy="2.46" r="0.3"/>
-                <circle cx="3" cy="2.46" r="0.3"/>
-                <circle cx="4.2" cy="2.46" r="0.3"/>
-                <circle cx="5.4" cy="2.46" r="0.3"/>
-                <circle cx="6.6" cy="2.46" r="0.3"/>
-                <circle cx="7.8" cy="2.46" r="0.3"/>
-                <circle cx="1.2" cy="3.69" r="0.3"/>
-                <circle cx="2.4" cy="3.69" r="0.3"/>
-                <circle cx="3.6" cy="3.69" r="0.3"/>
-                <circle cx="4.8" cy="3.69" r="0.3"/>
-                <circle cx="6" cy="3.69" r="0.3"/>
-                <circle cx="7.2" cy="3.69" r="0.3"/>
-                <circle cx="8.4" cy="3.69" r="0.3"/>
-                <circle cx="1.8" cy="4.92" r="0.3"/>
-                <circle cx="3" cy="4.92" r="0.3"/>
-                <circle cx="4.2" cy="4.92" r="0.3"/>
-                <circle cx="5.4" cy="4.92" r="0.3"/>
-                <circle cx="6.6" cy="4.92" r="0.3"/>
-                <circle cx="7.8" cy="4.92" r="0.3"/>
-                <circle cx="1.2" cy="6.15" r="0.3"/>
-                <circle cx="2.4" cy="6.15" r="0.3"/>
-                <circle cx="3.6" cy="6.15" r="0.3"/>
-                <circle cx="4.8" cy="6.15" r="0.3"/>
-                <circle cx="6" cy="6.15" r="0.3"/>
-                <circle cx="7.2" cy="6.15" r="0.3"/>
-                <circle cx="8.4" cy="6.15" r="0.3"/>
-                <circle cx="1.8" cy="7.38" r="0.3"/>
-                <circle cx="3" cy="7.38" r="0.3"/>
-                <circle cx="4.2" cy="7.38" r="0.3"/>
-                <circle cx="5.4" cy="7.38" r="0.3"/>
-                <circle cx="6.6" cy="7.38" r="0.3"/>
-                <circle cx="7.8" cy="7.38" r="0.3"/>
-              </g>
-            </svg>
-            Download English CV
-          </a>
-
-    <a
-      className="bg-[rgba(74,144,226,0.1)] text-[--color-secondary] py-[25px] px-[45px] text-base rounded-3xl flex align-center gap-[10px] cursor-pointer no-underline hover:bg-[rgba(74,144,226,0.2)] hover:translate-y-[-5px] hover:shadow-[0_5px_15px_rgba(100,223,223,0.2)] transition-all duration-300 border border-transparent hover:border-[rgba(100,223,223,0.3)]"
-      alt="button download"
-      href={curriculum}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {/* Bandera de España */}
-      <svg 
-        className="w-6 h-6 mr-2" 
-        viewBox="0 0 24 16"
-      >
-        <rect width="24" height="16" fill="#C60B1E"/>
-        <rect width="24" height="6.4" y="4.8" fill="#FFC400"/>
-        <g transform="translate(6, 8)">
-          <rect width="1.6" height="2.4" x="0.8" y="-1.2" fill="#C60B1E"/>
-          <rect width="2.4" height="1.6" x="0" y="-0.8" fill="#C60B1E"/>
-          <rect width="0.8" height="0.8" x="1.2" y="-0.4" fill="#FFC400"/>
-        </g>
-      </svg>
-      Download Spanish CV
-    </a>
+                return (
+                  <div key={i} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
+                    <div className="flex items-center gap-3">
+                      {IconComponent && <IconComponent size={20} className="text-amber-400" />}
+                      <span className="text-gray-200 text-sm">{item.name}</span>
+                    </div>
+                    <span className="text-xs bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-full">
+                      {item.status}
+                    </span>
+             </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-[5%] bg-gradient-to-b from-[#1a202c] to-[#111827] text-center">
-        <div className="max-w-[800px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-            <div className="text-2xl font-bold text-[--color-bluewhite] mb-4 md:mb-0">
-              Juan Jose Perez Buritica
+      <section
+        id="proyectos"
+        className={`py-24 px-6 bg-gray-900/50 transition-all duration-1000 ${
+          visibleSections.has('proyectos') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-center text-white">
+            Proyectos
+          </h2>
+          <div className="h-1 w-20 bg-purple-600 mx-auto mb-4 rounded-full" />
+          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-sm">
+            Proyectos desarrollados aplicando conocimientos en frontend
+          </p>
+ 
+          <div className="grid md:grid-cols-2 gap-8">
+            {PROJECTS_DATA.map((project, index) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+          </div>
+
+{/* 
+          <div className="mt-12 text-center">
+            <div className="inline-block bg-gray-800/40 rounded-xl p-6 border border-gray-700/50">
+              <p className="text-gray-300 mb-2 text-sm">
+                <span className="font-semibold text-purple-400">En desarrollo:</span> Nuevos proyectos con TypeScript y testing
+              </p>
             </div>
-            <div className="flex gap-4">
-              <SocialLinks small />
+          </div> */}
+
+        </div>
+      </section>
+
+      <section
+        id="contacto"
+        className={`py-24 px-6 transition-all duration-1000 ${
+          visibleSections.has('contacto') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-center text-white">
+            Contacto
+          </h2>
+          <div className="h-1 w-20 bg-purple-600 mx-auto mb-12 rounded-full" />
+
+          <div className="text-center">
+            <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto">
+              Si estás interesado en mi perfil o quieres conocer más sobre mi experiencia, puedes descargar mi currículum o contactarme directamente.
+            </p>
+
+            <a
+              href="public/hojavida/hojavida.pdf"
+              download
+              className="inline-flex items-center gap-3 px-8 py-4 bg-purple-600 rounded-lg font-medium text-base hover:bg-purple-700 transition-colors mb-12"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 16">
+                <rect width="24" height="16" fill="#C60B1E"/>
+                <rect width="24" height="6.4" y="4.8" fill="#FFC400"/>
+              </svg>
+              Descargar CV
+            </a>
+
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              <a
+                href="mailto:juanjoperez2121@gmail.com"
+                className="bg-gray-800/40 rounded-xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all"
+              >
+                <Mail className="text-purple-400 mx-auto mb-3" size={28} />
+                <h3 className="font-semibold text-white mb-2 text-sm">Email</h3>
+                <p className="text-gray-400 text-xs">juanjoperez2121@gmail.com</p>
+              </a>
+
+              <a
+                href="https://linkedin.com/in/juanjperezb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800/40 rounded-xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all"
+              >
+                <Linkedin className="text-purple-400 mx-auto mb-3" size={28} />
+                <h3 className="font-semibold text-white mb-2 text-sm">LinkedIn</h3>
+                <p className="text-gray-400 text-xs">juanjperezb</p>
+              </a>
+
+              <a
+                href="https://github.com/juanjuanjose"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800/40 rounded-xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all"
+              >
+                <Github className="text-purple-400 mx-auto mb-3" size={28} />
+                <h3 className="font-semibold text-white mb-2 text-sm">GitHub</h3>
+                <p className="text-gray-400 text-xs">juanjuanjose</p>
+              </a>
             </div>
           </div>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-[rgba(100,223,223,0.3)] to-transparent my-6"></div>
-          <p className="text-gray-400">© 2025 Juan Jose Perez Buritica - All rights reserved</p>
+        </div>
+      </section>
+
+    <footer className="py-12 px-6 bg-gray-900/80 border-t border-gray-800/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-center md:text-left">
+              <div className="text-xl font-bold text-white mb-2">
+                Juan José Pérez Buriticá
+              </div>
+              <p className="text-gray-400 text-sm">Frontend Developer | React Specialist</p>
+            </div>
+
+            <div className="flex gap-4">
+              <a
+                href="https://github.com/juanjuanjose"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+              >
+                <Github size={20} />
+              </a>
+
+              <a
+                href="https://linkedin.com/in/juanjperezb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+              >
+                <Linkedin size={20} />
+              </a>
+
+              <a
+                href="mailto:juanjoperez2121@gmail.com"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+              >
+                <Mail size={20} />
+              </a>
+            </div>
+          </div>
+
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-700 to-transparent my-8" />
+
+          <div className="text-center text-gray-400 text-sm">
+            <p>© 2025 Juan José Pérez Buriticá</p>
+            <p className="mt-2">Desarrollado con React + Tailwind CSS</p>
+          </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 
