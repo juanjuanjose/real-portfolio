@@ -1,69 +1,79 @@
-import { useState } from 'react';
+import PropTypes from "prop-types";
+import { ExternalLink, Github } from "lucide-react";
 
-const ProjectCard = ({ title, description, imgSrc, tags, githubUrl, demoUrl }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const ProjectCard = ({ project }) => {
+  const { demoUrl, description, featured, githubUrl, image, tags, title } = project;
 
   return (
     <div
-      className="bg-[rgba(255,255,255,0.05)] rounded-lg overflow-hidden transition-all duration-300 hover:transform hover:translate-y-[-5px] hover:shadow-[0_10px_20px_rgba(107,255,208,0.15)] border border-transparent hover:border-[rgba(107,255,208,0.2)] relative group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40"
     >
-      <div className="h-[260px] overflow-hidden relative">
-        <img
-          src={imgSrc || "/images/placeholder.jpg"}
-          alt={title}
-          className={`w-full h-full object-cover transition-transform duration-500 ${isHovered ? 'scale-110' : 'scale-100'}`}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,23,42,0.9)] to-transparent"></div>
-        <div className="absolute inset-0 flex items-end p-4">
-          <h3 className="text-xl font-bold text-white relative z-10">
-            {title}
-          </h3>
+      {featured && (
+        <div className="absolute right-4 top-4 z-10 rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold text-white">
+          Destacado
         </div>
+      )}
+
+      <div className="relative h-[260px] overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
       </div>
 
-      <div className="p-5">
-        <p className="text-gray-300 mb-4">{description}</p>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-white">{title}</h3>
+        <p className="mt-3 text-sm leading-7 text-slate-400">{description}</p>
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="mb-6 mt-5 flex flex-wrap gap-2">
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="px-2 py-1 text-xs rounded-full bg-[rgba(107,255,208,0.1)] text-[#6bffd0] border border-[rgba(107,255,208,0.2)]"
+              className="rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs text-violet-200"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex items-center gap-3">
           <a
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm px-4 py-2 bg-[#6bffd0] text-[#0f172a] rounded hover:bg-[#5ee2ba] font-medium transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-violet-500"
           >
-            See Demo
+            <ExternalLink size={16} />
+            Ver demo
           </a>
 
           <a
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm flex items-center text-gray-400 hover:text-[#6bffd0] transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-slate-500 hover:text-white"
           >
-            <svg className="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12...z" />
-            </svg>
-            View Code
+            <Github size={16} />
+            Código
           </a>
         </div>
       </div>
-
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#6bffd0] via-[#6B8BFF] to-[#FF6B8B] opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>
     </div>
   );
+};
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    demoUrl: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    featured: PropTypes.bool,
+    githubUrl: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default ProjectCard;

@@ -2,84 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-primary: #94a3b8;
-  --color-secondary: #cbd5e1;
-  --color-bluewhite: #e0f2fe;
-  --color-blue: #48BFE3;
-  --color-teal: #64DFDF;
-  --color-slate: #8D99AE;
-  --transition: all 0.3s ease;
-  --animation-h2: floating 6s ease-in-out infinite;
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--color-really-black);
-  color: var(--color-primary);
   overflow-x: hidden;
+  background-color: #020617;
+  color: #cbd5e1;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+#root {
+  min-height: 100vh;
 }
 
-section {
-  position: relative;
-}
-
-/* Estilos para títulos */
-h2 {
-  color: var(--color-bluewhite);
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-h3 {
-  color: var(--color-primary);
-  font-size: 24px;
-  font-weight: 500;
-}
-
-p {
-  line-height: 1.7;
-  color: var(--color-secondary);
-}
-
-/* Animaciones */
-@keyframes floating {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0.6;
-  }
-}
-
-/* Decoraciones de fondo */
-.bg-dots {
-  background-image: radial-gradient(circle, rgba(100, 223, 223, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* Personalización de scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -89,125 +28,10 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(100, 223, 223, 0.3);
+  background: rgba(139, 92, 246, 0.35);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 223, 223, 0.5);
-}
-
-/* Gradientes para separadores y elementos decorativos */
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-teal), var(--color-blue), var(--color-slate));
-  border-radius: 2px;
-}
-
-/* Estilos para las secciones principales */
-#Home {
-  position: relative;
-  overflow: hidden;
-}
-
-#Home::before {
-  content: '';
-  position: absolute;
-  top: -10%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(100, 223, 223, 0.05) 0%, transparent 70%);
-  animation: pulse 8s infinite ease-in-out;
-}
-
-#Home::after {
-  content: '';
-  position: absolute;
-  bottom: -10%;
-  left: -10%;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(72, 191, 227, 0.05) 0%, transparent 70%);
-  animation: pulse 8s infinite ease-in-out reverse;
-}
-
-/* Efectos hover para elementos clave */
-.hover-scale {
-  transition: var(--transition);
-}
-
-.hover-scale:hover {
-  transform: scale(1.05);
-}
-
-/* Media queries para responsive */
-@media (max-width: 768px) {
-  h2 {
-    font-size: 28px;
-  }
-  
-  h3 {
-    font-size: 20px;
-  }
-  
-  #Home::before,
-  #Home::after {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-/* Estilos especiales para sección de habilidades */
-#skills .ability-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#skills .ability-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(100, 223, 223, 0.2);
-}
-
-/* Mejoras para la sección de lugares de aprendizaje */
-@media (min-width: 768px) {
-  .learning-timeline {
-    position: relative;
-  }
-  
-  .learning-timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--color-teal), var(--color-slate));
-    transform: translateX(-50%);
-  }
-}
-
-/* Efecto elegante para la sección de curriculum */
-#curriculum a:hover {
-  box-shadow: 0 10px 20px rgba(100, 223, 223, 0.25);
-}
-
-/* Efecto de tarjeta para proyectos */
-.project-card {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(72, 191, 227, 0.15);
+  background: rgba(139, 92, 246, 0.55);
 }
