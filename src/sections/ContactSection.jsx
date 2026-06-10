@@ -26,13 +26,13 @@ const ContactSection = ({ contact, isVisible }) => {
   return (
     <section
       id="contacto"
-      className={`bg-slate-950/60 px-6 py-24 transition-all duration-1000 ${
+      className={`px-6 py-24 transition-all duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.95fr]">
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 md:p-10">
-          <span className="text-sm font-medium uppercase tracking-[0.25em] text-violet-300">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur md:p-10">
+          <span className="text-sm font-medium uppercase tracking-[0.25em] text-cyan-200">
             {contact.eyebrow}
           </span>
           <h2 className="mt-4 text-4xl font-semibold text-white">{contact.title}</h2>
@@ -42,12 +42,12 @@ const ContactSection = ({ contact, isVisible }) => {
             <a
               href={contact.cvUrl}
               download
-              className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-violet-500"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
             >
               <Download size={18} />
               Descargar CV
             </a>
-            <span className="rounded-full border border-slate-700 bg-slate-950 px-4 py-2 text-sm text-slate-300">
+            <span className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-2 text-sm text-slate-300">
               {contact.availability}
             </span>
           </div>
@@ -64,14 +64,14 @@ const ContactSection = ({ contact, isVisible }) => {
                 href={value.href}
                 target={item.key === "email" ? undefined : "_blank"}
                 rel={item.key === "email" ? undefined : "noopener noreferrer"}
-                className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 transition-colors hover:border-violet-500/30"
+                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:border-cyan-300/30"
               >
                 <div className="flex items-start gap-4">
-                  <div className="rounded-2xl bg-violet-500/10 p-3 text-violet-300">
+                  <div className="rounded-2xl bg-cyan-400/10 p-3 text-cyan-200">
                     <Icon size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-[0.2em] text-violet-300">
+                    <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-200">
                       {item.label}
                     </p>
                     <p className="mt-2 text-lg font-medium text-white">{item.platformLabel}</p>

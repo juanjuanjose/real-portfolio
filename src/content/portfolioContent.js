@@ -10,6 +10,7 @@ export const portfolioContent = {
     { id: "inicio", label: "Inicio" },
     { id: "perfil-profesional", label: "Perfil" },
     { id: "experiencia", label: "Experiencia" },
+    { id: "automatizacion", label: "Automatización" },
     { id: "proyectos", label: "Proyectos" },
     { id: "contacto", label: "Contacto" }
   ],
@@ -20,14 +21,16 @@ export const portfolioContent = {
     roles: [
       "Programador full stack",
       "Desarrollo asistido por IA",
-      "Experiencias web orientadas a e-commerce"
+      "Experiencias web orientadas a e-commerce",
+      "Automatización con Zapier y Make"
     ],
     summary:
-      "Construyo experiencias web funcionales y elegantes, combinando frontend en React, criterio de producto y apoyo de IA para acelerar entregas sin sacrificar claridad técnica.",
+      "Diseño experiencias web con una base visual más sólida, frontend en React, criterio de producto y automatizaciones que conectan procesos, contenido y operaciones sin perder claridad técnica.",
     stats: [
-      { value: "React + Tailwind", label: "stack principal para interfaces de negocio" },
-      { value: "E-commerce + CMS", label: "contexto práctico en sitios y operación digital" },
-      { value: "IA aplicada", label: "prototipado, copy técnico y soporte de implementación" }
+      { value: "React + Tailwind", label: "interfaces limpias para sitios, landings y producto" },
+      { value: "E-commerce + CMS", label: "contexto práctico en sitios, catálogos y operación digital" },
+      { value: "Zapier + Make", label: "automatización de tareas, formularios y flujos conectados" },
+      { value: "IA aplicada", label: "investigación, prototipado y soporte de implementación" }
     ],
     ctas: [
       { label: "Ver proyectos", href: "#proyectos", variant: "primary" },
@@ -44,7 +47,7 @@ export const portfolioContent = {
     title: "Perfil profesional",
     paragraphs: [
       "Soy tecnólogo en análisis y desarrollo de software con foco en crear productos web que se vean bien, comuniquen con claridad y resuelvan necesidades reales de negocio.",
-      "Hoy me posiciono como programador full stack con una base fuerte en frontend, experiencia práctica en entornos CMS y una forma de trabajo apoyada por IA para investigar, iterar y entregar con más velocidad y mejor criterio."
+      "Hoy me posiciono como programador full stack con una base fuerte en frontend, experiencia práctica en entornos CMS y una forma de trabajo apoyada por IA y automatización para investigar, iterar y entregar con más velocidad y mejor criterio."
     ],
     focusAreas: [
       {
@@ -58,6 +61,10 @@ export const portfolioContent = {
       {
         title: "IA como acelerador, no atajo",
         description: "Uso herramientas asistidas para explorar soluciones, refinar copy y reducir tiempo de implementación con supervisión técnica."
+      },
+      {
+        title: "Automatización útil",
+        description: "Incorporo Zapier y Make para conectar formularios, tareas y seguimiento sin convertir el sitio en un caos manual."
       }
     ],
     education: [
@@ -105,13 +112,47 @@ export const portfolioContent = {
       tech: ["React", "JavaScript", "CSS", "API"]
     }
   ],
+  automationSection: {
+    eyebrow: "Automatización",
+    title: "Herramientas para conectar procesos, no solo interfaces.",
+    intro:
+      "Además del frontend, integro automatizaciones ligeras para que formularios, leads, tareas y notificaciones no dependan de seguimiento manual innecesario.",
+    pillars: [
+      "Conectar formularios con correo, hojas de cálculo o CRM.",
+      "Crear flujos de seguimiento para leads y solicitudes.",
+      "Reducir tareas repetitivas en procesos comerciales o internos."
+    ],
+    tools: [
+      {
+        name: "Zapier",
+        category: "Automatización no-code",
+        description:
+          "Ideal para enlazar formularios, correo, Google Sheets y apps comerciales con una configuración rápida.",
+        useCases: ["captura de leads", "notificaciones", "sincronización básica"]
+      },
+      {
+        name: "Make",
+        category: "Flujos visuales",
+        description:
+          "Útil para escenarios más visuales y ramificados cuando el flujo necesita varias condiciones o pasos intermedios.",
+        useCases: ["routers", "transformación de datos", "procesos multi-step"]
+      },
+      {
+        name: "IA asistida",
+        category: "Apoyo operativo",
+        description:
+          "La uso para acelerar documentación, copy técnico, exploración y definición de soluciones antes de implementar.",
+        useCases: ["documentación", "copy", "exploración técnica"]
+      }
+    ]
+  },
   projectsSection: {
     eyebrow: "Proyectos seleccionados",
     title: "Evidencia de ejecución, no promesas vacías.",
     intro:
       "Estos proyectos muestran cómo traduzco necesidades visuales y funcionales en experiencias web mantenibles. El foco está en frontend sólido, estructura clara y contexto útil para e-commerce, contenido y evolución del producto.",
     closingNote:
-      "También utilizo flujos asistidos por IA para iterar copy, explorar opciones técnicas y acelerar entregas, siempre con criterio humano sobre el resultado final."
+      "También utilizo flujos asistidos por IA y automatización ligera para iterar copy, explorar opciones técnicas y acelerar entregas, siempre con criterio humano sobre el resultado final."
   },
   projects: [
     {
@@ -134,20 +175,20 @@ export const portfolioContent = {
       demoUrl: "https://juanjuanjose.github.io/real-portfolio/"
     }
   ],
-  contact: {
-    eyebrow: "Contacto",
-    title: "Si tu proyecto necesita una presencia web más clara, conversemos.",
-    intro:
-      "Estoy disponible para colaborar en interfaces modernas, mantenimiento evolutivo de sitios, soporte frontend y trabajo relacionado con experiencias e-commerce o flujos asistidos por IA bien aterrizados.",
-    availability: "Remoto · colaboración por proyecto · documentación y comunicación clara",
-    cvUrl: assetPath("hojavida/hojavida.pdf"),
+    contact: {
+      eyebrow: "Contacto",
+      title: "Si tu proyecto necesita presencia web y procesos más claros, conversemos.",
+      intro:
+        "Estoy disponible para colaborar en interfaces modernas, mantenimiento evolutivo de sitios, soporte frontend y trabajo relacionado con experiencias e-commerce o automatizaciones bien aterrizadas.",
+      availability: "Remoto · colaboración por proyecto · documentación y comunicación clara",
+      cvUrl: assetPath("hojavida/hojavida.pdf"),
     email: "juanjoperez2121@gmail.com",
     linkedin: "https://linkedin.com/in/juanjperezb",
     github: "https://github.com/juanjuanjose"
   },
   footer: {
     name: "Juan José Pérez Buriticá",
-    role: "Programador full stack · React, e-commerce e IA asistida",
+    role: "Programador full stack · React, automatización y experiencias digitales",
     note: "Construido con React y Tailwind para comunicar mejor experiencia, criterio y capacidad de ejecución."
   }
 };

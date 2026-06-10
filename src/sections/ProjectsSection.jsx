@@ -10,10 +10,10 @@ const ProjectsSection = ({ projectsSection, projects, isVisible }) => {
       }`}
     >
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="text-sm font-medium uppercase tracking-[0.25em] text-violet-300">
-            {projectsSection.eyebrow}
-          </span>
+          <div className="mx-auto max-w-3xl text-center">
+           <span className="text-sm font-medium uppercase tracking-[0.25em] text-cyan-200">
+             {projectsSection.eyebrow}
+           </span>
           <h2 className="mt-4 text-4xl font-semibold text-white">{projectsSection.title}</h2>
           <p className="mt-6 text-base leading-8 text-slate-400">{projectsSection.intro}</p>
         </div>
@@ -24,7 +24,7 @@ const ProjectsSection = ({ projectsSection, projects, isVisible }) => {
           ))}
         </div>
 
-        <div className="mt-10 rounded-3xl border border-slate-800 bg-slate-900/60 px-6 py-5 text-sm leading-7 text-slate-300">
+        <div className="mt-10 rounded-3xl border border-white/10 bg-white/5 px-6 py-5 text-sm leading-7 text-slate-300 backdrop-blur">
           {projectsSection.closingNote}
         </div>
       </div>

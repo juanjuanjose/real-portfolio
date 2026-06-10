@@ -19,6 +19,38 @@ body {
   min-height: 100vh;
 }
 
+.page-shell {
+  position: relative;
+  background:
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.16), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.16), transparent 24%),
+    linear-gradient(135deg, #020617 0%, #0b1120 45%, #020617 100%);
+}
+
+.page-grid,
+.page-glow {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+}
+
+.page-grid {
+  opacity: 0.28;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(115deg, rgba(34, 211, 238, 0.12), transparent 40%);
+  background-size: 72px 72px, 72px 72px, 100% 100%;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+}
+
+.page-glow {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.1), transparent 24%),
+    radial-gradient(circle at 80% 30%, rgba(192, 132, 252, 0.1), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.08), transparent 20%);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

@@ -12,22 +12,37 @@ const HeroSection = ({ hero, typingText }) => {
     <section id="inicio" className="min-h-screen flex items-center px-6 pt-24 pb-16">
       <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_0.8fr] gap-14 items-center">
         <div>
-          <span className="inline-flex items-center rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-2 text-sm text-violet-200">
+          <span className="inline-flex items-center px-1 text-lg font-medium text-cyan-100 md:text-xl">
             {hero.greeting}
           </span>
 
-          <h1 className="mt-6 text-5xl md:text-6xl font-semibold tracking-tight text-white">
+          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
             {hero.name}
           </h1>
 
-          <div className="mt-5 h-16 text-2xl md:text-3xl text-slate-300 font-light">
+          <div className="mt-5 h-16 text-2xl font-light text-slate-200 md:text-3xl">
             {typingText}
-            <span className="animate-pulse text-violet-400">|</span>
+            <span className="animate-pulse text-cyan-300">|</span>
           </div>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-400">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             {hero.summary}
           </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Frontend</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">Interfaces organizadas, escalables y con mejor presentación.</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.25em] text-fuchsia-200">Automatización</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">Zapier y Make para reducir tareas manuales y conectar herramientas.</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.25em] text-emerald-200">Operación</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">Pensado para sitios, contenido, leads y flujos reales de negocio.</p>
+            </div>
+          </div>
 
           <div className="mt-8 flex flex-wrap gap-4">
             {hero.ctas.map((cta) => (
@@ -36,8 +51,8 @@ const HeroSection = ({ hero, typingText }) => {
                 href={cta.href}
                 className={
                   cta.variant === "primary"
-                    ? "inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-violet-500"
-                    : "inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/70 px-6 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-slate-500 hover:text-white"
+                    ? "inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+                    : "inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-slate-200 backdrop-blur transition-colors hover:border-cyan-300/30 hover:text-white"
                 }
               >
                 {cta.label}
@@ -57,7 +72,7 @@ const HeroSection = ({ hero, typingText }) => {
                   target={link.platform === "email" ? undefined : "_blank"}
                   rel={link.platform === "email" ? undefined : "noopener noreferrer"}
                   aria-label={link.label}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-800 bg-slate-900/70 text-slate-300 transition-colors hover:border-violet-500/40 hover:bg-violet-600 hover:text-white"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur transition-colors hover:border-cyan-300/40 hover:bg-cyan-400/10 hover:text-white"
                 >
                   <Icon size={18} />
                 </a>
@@ -67,8 +82,9 @@ const HeroSection = ({ hero, typingText }) => {
         </div>
 
         <div className="space-y-6">
-          <div className="mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-violet-500/20 bg-slate-900/80 p-3 shadow-2xl shadow-black/30">
-            <div className="overflow-hidden rounded-[1.5rem] border border-slate-800 bg-slate-950">
+          <div className="relative mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-white/5 p-3 shadow-[0_0_80px_rgba(59,130,246,0.15)] backdrop-blur">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.18),transparent_60%)]" />
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-950">
               <img
                 src={hero.profileImage}
                 alt="Retrato profesional de Juan José"
@@ -77,14 +93,14 @@ const HeroSection = ({ hero, typingText }) => {
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-2">
             {hero.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 backdrop-blur"
+                className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur"
               >
                 <p className="text-sm font-semibold text-white">{stat.value}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-400">{stat.label}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{stat.label}</p>
               </div>
             ))}
           </div>

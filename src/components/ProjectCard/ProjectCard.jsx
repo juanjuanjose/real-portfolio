@@ -6,10 +6,10 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40"
+      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-[0_0_40px_rgba(34,211,238,0.08)]"
     >
       {featured && (
-        <div className="absolute right-4 top-4 z-10 rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold text-white">
+        <div className="absolute right-4 top-4 z-10 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-3 py-1 text-xs font-semibold text-white">
           Destacado
         </div>
       )}
@@ -31,10 +31,10 @@ const ProjectCard = ({ project }) => {
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs text-violet-200"
-            >
-              {tag}
-            </span>
+                className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-100"
+              >
+                {tag}
+              </span>
           ))}
         </div>
 
@@ -43,7 +43,7 @@ const ProjectCard = ({ project }) => {
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-violet-500"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-4 py-2.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
           >
             <ExternalLink size={16} />
             Ver demo
@@ -53,7 +53,7 @@ const ProjectCard = ({ project }) => {
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-slate-500 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-cyan-300/30 hover:text-white"
           >
             <Github size={16} />
             Código

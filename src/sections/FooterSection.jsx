@@ -15,7 +15,7 @@ const FooterSection = ({ contact, footer }) => {
   };
 
   return (
-    <footer className="border-t border-slate-800/60 bg-slate-950 px-6 py-12">
+    <footer className="border-t border-white/10 bg-slate-950/70 px-6 py-12 backdrop-blur">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
@@ -34,7 +34,7 @@ const FooterSection = ({ contact, footer }) => {
                   href={socialValues[item.key]}
                   target={item.key === "email" ? undefined : "_blank"}
                   rel={item.key === "email" ? undefined : "noopener noreferrer"}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-300 transition-colors hover:border-violet-500/40 hover:bg-violet-600 hover:text-white"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-300/40 hover:bg-cyan-400/10 hover:text-white"
                 >
                   <Icon size={18} />
                 </a>
@@ -46,8 +46,8 @@ const FooterSection = ({ contact, footer }) => {
         <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
 
         <div className="flex flex-col gap-2 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>© 2025 Juan José Pérez Buriticá</p>
-          <p>React + Tailwind · narrativa profesional centrada en ejecución</p>
+          <p>© 2026 Juan José Pérez Buriticá</p>
+          <p>React + Tailwind · narrativa profesional, automatización y ejecución</p>
         </div>
       </div>
     </footer>

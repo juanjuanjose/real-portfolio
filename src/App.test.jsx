@@ -8,9 +8,9 @@ describe("Portfolio landing spec coverage", () => {
 
     expect(screen.getByRole("heading", { name: /juan jos/i })).toBeInTheDocument();
     expect(screen.getByText(/hoy me posiciono como programador full stack/i)).toBeInTheDocument();
-    expect(screen.getByText(/programador full stack .* ia asistida/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/programador full stack .* automatizaci.n/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: /trabajo y formaci.n conectados con operaci.n digital real/i })).toBeInTheDocument();
-    expect(screen.getByText(/react \+ tailwind .* narrativa profesional centrada en ejecuci.n/i)).toBeInTheDocument();
+    expect(screen.getByText(/react \+ tailwind .* automatizaci.n y ejecuci.n/i)).toBeInTheDocument();
   });
 
   it("professional narrative consistency - no inflated claims", () => {
@@ -59,6 +59,21 @@ describe("Portfolio landing spec coverage", () => {
     expect(screen.getAllByText(/operaci.n digital/i).length).toBeGreaterThan(0);
   });
 
+  it("automation stack visibility - zapier and make are present", () => {
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: /herramientas para conectar procesos/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/zapier/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/make/i).length).toBeGreaterThan(0);
+  });
+
+  it("futuristic visual system - app renders background layers", () => {
+    render(<App />);
+
+    expect(document.querySelector(".page-grid")).not.toBeNull();
+    expect(document.querySelector(".page-glow")).not.toBeNull();
+  });
+
   it("safe public assets and links - asset paths survive deployment", () => {
     render(<App />);
 
@@ -68,7 +83,7 @@ describe("Portfolio landing spec coverage", () => {
     const heroImage = screen.getByAltText(/retrato profesional de juan jos/i);
     expect(heroImage).toHaveAttribute("src", assetPath("images/yo.jpg"));
 
-    expect(assetPath("images/profile.png")).toBe("/real-portfolio/images/profile.png");
+    expect(assetPath("images/profile.png")).toBe(`${import.meta.env.BASE_URL}images/profile.png`);
   });
 
   it("safe public assets and links - repeated links stay consistent", () => {
