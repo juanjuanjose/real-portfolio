@@ -4,14 +4,14 @@ const ExperienceSection = ({ sectionContent, experience, isVisible }) => {
   return (
     <section
       id="experiencia"
-      className={`bg-slate-950/60 px-6 py-24 transition-all duration-1000 ${
+      className={`px-6 py-24 transition-all duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
-            <span className="text-sm font-medium uppercase tracking-[0.25em] text-violet-300">
+            <span className="text-sm font-medium uppercase tracking-[0.25em] text-cyan-200">
               {sectionContent.eyebrow}
             </span>
             <h2 className="mt-4 text-4xl font-semibold text-white">
@@ -23,7 +23,7 @@ const ExperienceSection = ({ sectionContent, experience, isVisible }) => {
               {sectionContent.highlights.map((highlight) => (
                 <div
                   key={highlight}
-                  className="rounded-2xl border border-slate-800 bg-slate-900/70 px-5 py-4 text-sm leading-7 text-slate-300"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm leading-7 text-slate-300 backdrop-blur"
                 >
                   {highlight}
                 </div>
@@ -32,25 +32,25 @@ const ExperienceSection = ({ sectionContent, experience, isVisible }) => {
           </div>
 
           <div className="relative">
-            <div className="absolute left-[11px] top-5 bottom-5 hidden w-px bg-gradient-to-b from-violet-500/60 via-violet-500/20 to-transparent md:block" />
+             <div className="absolute bottom-5 left-[11px] top-5 hidden w-px bg-gradient-to-b from-cyan-400/60 via-violet-500/20 to-transparent md:block" />
 
             <div className="space-y-6">
               {experience.map((item) => (
                 <article
                   key={`${item.company}-${item.title}`}
-                  className="relative rounded-3xl border border-slate-800 bg-slate-900/70 p-6 md:pl-10"
+                  className="relative rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur md:pl-16"
                 >
-                  <div className="absolute left-6 top-8 hidden h-3 w-3 rounded-full bg-violet-400 ring-8 ring-slate-950 md:block" />
+                  <div className="absolute left-6 top-8 hidden h-3 w-3 rounded-full bg-cyan-300 ring-8 ring-slate-950 md:block" />
 
-                  <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="flex flex-col items-start gap-4 sm:flex-row sm:justify-between">
                     <div>
-                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-violet-300">
+                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-200">
                         {item.type}
                       </p>
                       <h3 className="mt-2 text-2xl font-semibold text-white">{item.title}</h3>
                       <p className="mt-1 text-base text-slate-300">{item.company}</p>
                     </div>
-                    <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5 text-sm text-violet-200">
+                    <span className="shrink-0 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-sm text-cyan-100 sm:mt-1">
                       {item.period}
                     </span>
                   </div>
@@ -58,7 +58,7 @@ const ExperienceSection = ({ sectionContent, experience, isVisible }) => {
                   <ul className="mt-6 space-y-3 text-sm leading-7 text-slate-300">
                     {item.achievements.map((achievement) => (
                       <li key={achievement} className="flex gap-3">
-                        <span className="mt-2 h-2 w-2 rounded-full bg-violet-400" />
+                        <span className="mt-2 h-2 w-2 rounded-full bg-cyan-300" />
                         <span>{achievement}</span>
                       </li>
                     ))}
@@ -68,7 +68,7 @@ const ExperienceSection = ({ sectionContent, experience, isVisible }) => {
                     {item.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-slate-300"
+                        className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-1.5 text-xs text-slate-300"
                       >
                         {tech}
                       </span>

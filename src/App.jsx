@@ -2,6 +2,7 @@ import { portfolioContent } from "./content/portfolioContent";
 import { useSectionVisibility } from "./hooks/useSectionVisibility";
 import { useTypingText } from "./hooks/useTypingText";
 import ContactSection from "./sections/ContactSection";
+import AutomationSection from "./sections/AutomationSection";
 import ExperienceSection from "./sections/ExperienceSection";
 import FooterSection from "./sections/FooterSection";
 import HeroSection from "./sections/HeroSection";
@@ -12,6 +13,7 @@ import SiteHeader from "./sections/SiteHeader";
 function App() {
   const {
     contact,
+    automationSection,
     experience,
     experienceSection,
     footer,
@@ -41,6 +43,12 @@ function App() {
       )
     },
     {
+      id: "automatizacion",
+      render: (isVisible) => (
+        <AutomationSection sectionContent={automationSection} isVisible={isVisible} />
+      )
+    },
+    {
       id: "proyectos",
       render: (isVisible) => (
         <ProjectsSection
@@ -57,9 +65,11 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+    <div className="page-shell min-h-screen text-white">
+      <div className="page-grid" aria-hidden="true" />
+      <div className="page-glow" aria-hidden="true" />
       <SiteHeader nav={nav} brand={footer.name} />
-      <main>
+      <main className="relative z-10">
         <HeroSection hero={hero} typingText={typingText} />
         {animatedSections.map((section) => (
           <div key={section.id}>{section.render(visibleSections.has(section.id))}</div>
