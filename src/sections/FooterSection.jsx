@@ -46,8 +46,8 @@ const FooterSection = ({ contact, footer }) => {
         <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
 
         <div className="flex flex-col gap-2 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Juan José Pérez Buriticá</p>
-          <p>React + Tailwind · narrativa profesional, automatización y ejecución</p>
+          <p>{footer.copyright}</p>
+          <p>{footer.tagline}</p>
         </div>
       </div>
     </footer>
@@ -61,9 +61,11 @@ FooterSection.propTypes = {
     linkedin: PropTypes.string.isRequired
   }).isRequired,
   footer: PropTypes.shape({
+    copyright: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     note: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired
+    role: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired
   }).isRequired
 };
 

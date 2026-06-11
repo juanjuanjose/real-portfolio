@@ -14,11 +14,9 @@ const ProfessionalSummarySection = ({ summary, isVisible }) => {
       <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur md:p-10">
           <span className="text-sm font-medium uppercase tracking-[0.25em] text-cyan-200">
-            {summary.title}
+            {summary.eyebrow}
           </span>
-          <h2 className="mt-4 text-4xl font-semibold text-white">
-            Desarrollo web con criterio técnico, automatización útil y presentación profesional.
-          </h2>
+          <h2 className="mt-4 text-4xl font-semibold text-white">{summary.title}</h2>
 
           <div className="mt-6 space-y-5 text-base leading-8 text-slate-300">
             {summary.paragraphs.map((paragraph) => (
@@ -29,7 +27,7 @@ const ProfessionalSummarySection = ({ summary, isVisible }) => {
 
         <div className="space-y-6">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <h3 className="text-lg font-semibold text-white">En qué enfoco mi trabajo</h3>
+            <h3 className="text-lg font-semibold text-white">{summary.focusTitle}</h3>
             <div className="mt-6 space-y-4">
               {summary.focusAreas.map((area, index) => {
                 const Icon = focusIcons[index] ?? BriefcaseBusiness;
@@ -55,7 +53,7 @@ const ProfessionalSummarySection = ({ summary, isVisible }) => {
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <h3 className="text-lg font-semibold text-white">Formación</h3>
+            <h3 className="text-lg font-semibold text-white">{summary.educationTitle}</h3>
             <div className="mt-5 space-y-4">
               {summary.education.map((item) => (
                 <div key={item.title} className="border-l border-cyan-400/30 pl-4">
@@ -80,14 +78,17 @@ ProfessionalSummarySection.propTypes = {
         title: PropTypes.string.isRequired
       })
     ).isRequired,
+    educationTitle: PropTypes.string.isRequired,
     focusAreas: PropTypes.arrayOf(
       PropTypes.shape({
         description: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired
       })
     ).isRequired,
+    focusTitle: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    eyebrow: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired
 };

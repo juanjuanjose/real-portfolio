@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { ExternalLink, Github } from "lucide-react";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, actions }) => {
   const { demoUrl, description, featured, githubUrl, image, tags, title } = project;
 
   return (
@@ -10,7 +10,7 @@ const ProjectCard = ({ project }) => {
     >
       {featured && (
         <div className="absolute right-4 top-4 z-10 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-3 py-1 text-xs font-semibold text-white">
-          Destacado
+          {actions.featured}
         </div>
       )}
 
@@ -46,7 +46,7 @@ const ProjectCard = ({ project }) => {
             className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-4 py-2.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
           >
             <ExternalLink size={16} />
-            Ver demo
+            {actions.demo}
           </a>
 
           <a
@@ -56,7 +56,7 @@ const ProjectCard = ({ project }) => {
             className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-cyan-300/30 hover:text-white"
           >
             <Github size={16} />
-            Código
+            {actions.code}
           </a>
         </div>
       </div>
@@ -65,6 +65,11 @@ const ProjectCard = ({ project }) => {
 };
 
 ProjectCard.propTypes = {
+  actions: PropTypes.shape({
+    code: PropTypes.string.isRequired,
+    demo: PropTypes.string.isRequired,
+    featured: PropTypes.string.isRequired
+  }).isRequired,
   project: PropTypes.shape({
     demoUrl: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

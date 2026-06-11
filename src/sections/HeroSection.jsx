@@ -9,7 +9,7 @@ const socialIcons = {
 
 const HeroSection = ({ hero, typingText }) => {
   return (
-    <section id="inicio" className="min-h-screen flex items-center px-6 pt-24 pb-16">
+    <section id={hero.id} className="min-h-screen flex items-center px-6 pt-24 pb-16">
       <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_0.8fr] gap-14 items-center">
         <div>
           <span className="inline-flex items-center px-1 text-lg font-medium text-cyan-100 md:text-xl">
@@ -30,18 +30,15 @@ const HeroSection = ({ hero, typingText }) => {
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Frontend</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">Interfaces organizadas, escalables y con mejor presentación.</p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.25em] text-fuchsia-200">Automatización</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">Zapier y Make para reducir tareas manuales y conectar herramientas.</p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.25em] text-emerald-200">Operación</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">Pensado para sitios, contenido, leads y flujos reales de negocio.</p>
-            </div>
+            {hero.cards.map((card) => (
+              <div
+                key={card.title}
+                className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur"
+              >
+                <p className={`text-xs uppercase tracking-[0.25em] ${card.accent}`}>{card.title}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{card.description}</p>
+              </div>
+            ))}
           </div>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -85,11 +82,11 @@ const HeroSection = ({ hero, typingText }) => {
           <div className="relative mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-white/5 p-3 shadow-[0_0_80px_rgba(59,130,246,0.15)] backdrop-blur">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.18),transparent_60%)]" />
             <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-950">
-              <img
-                src={hero.profileImage}
-                alt="Retrato profesional de Juan José"
-                className="h-[420px] w-full object-cover"
-              />
+                <img
+                  src={hero.profileImage}
+                  alt={hero.profileAlt}
+                  className="h-[420px] w-full object-cover"
+                />
             </div>
           </div>
 
@@ -119,8 +116,17 @@ HeroSection.propTypes = {
         variant: PropTypes.string.isRequired
       })
     ).isRequired,
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        accent: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired
+      })
+    ).isRequired,
     greeting: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    profileAlt: PropTypes.string.isRequired,
     profileImage: PropTypes.string.isRequired,
     socialLinks: PropTypes.arrayOf(
       PropTypes.shape({

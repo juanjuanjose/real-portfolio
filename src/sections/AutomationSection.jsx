@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Bot, Workflow, Zap } from "lucide-react";
 
 const toolIcons = {
+  "AI-assisted": Bot,
   "IA asistida": Bot,
   Make: Workflow,
   Zapier: Zap
@@ -10,7 +11,7 @@ const toolIcons = {
 const AutomationSection = ({ sectionContent, isVisible }) => {
   return (
     <section
-      id="automatizacion"
+      id={sectionContent.id}
       className={`px-6 py-24 transition-all duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
@@ -85,8 +86,9 @@ const AutomationSection = ({ sectionContent, isVisible }) => {
 
 AutomationSection.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-  sectionContent: PropTypes.shape({
-    eyebrow: PropTypes.string.isRequired,
+    sectionContent: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      eyebrow: PropTypes.string.isRequired,
     intro: PropTypes.string.isRequired,
     pillars: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,

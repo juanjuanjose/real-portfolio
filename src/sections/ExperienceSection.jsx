@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const ExperienceSection = ({ sectionContent, experience, isVisible }) => {
   return (
     <section
-      id="experiencia"
+      id={sectionContent.id}
       className={`px-6 py-24 transition-all duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
@@ -96,8 +96,9 @@ ExperienceSection.propTypes = {
     })
   ).isRequired,
   isVisible: PropTypes.bool.isRequired,
-  sectionContent: PropTypes.shape({
-    eyebrow: PropTypes.string.isRequired,
+    sectionContent: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      eyebrow: PropTypes.string.isRequired,
     highlights: PropTypes.arrayOf(PropTypes.string).isRequired,
     intro: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
