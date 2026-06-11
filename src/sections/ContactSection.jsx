@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 
-const contactCards = [
-  { key: "email", label: "Email", platformLabel: "Escríbeme directamente", icon: Mail },
-  { key: "linkedin", label: "LinkedIn", platformLabel: "Perfil profesional", icon: Linkedin },
-  { key: "github", label: "GitHub", platformLabel: "Código y repositorios", icon: Github }
-];
+const contactIcons = {
+  email: Mail,
+  github: Github,
+  linkedin: Linkedin
+};
 
 const ContactSection = ({ contact, isVisible }) => {
   const contactValues = {
@@ -25,7 +25,7 @@ const ContactSection = ({ contact, isVisible }) => {
 
   return (
     <section
-      id="contacto"
+      id={contact.id}
       className={`px-6 py-24 transition-all duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
@@ -38,24 +38,40 @@ const ContactSection = ({ contact, isVisible }) => {
           <h2 className="mt-4 text-4xl font-semibold text-white">{contact.title}</h2>
           <p className="mt-6 text-base leading-8 text-slate-300">{contact.intro}</p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href={contact.cvUrl}
-              download
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
-            >
-              <Download size={18} />
-              Descargar CV
-            </a>
-            <span className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-2 text-sm text-slate-300">
+          <div className="mt-8 space-y-4">
+            <span className="inline-flex rounded-full border border-white/10 bg-slate-950/70 px-4 py-2 text-sm text-slate-300">
               {contact.availability}
             </span>
+
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-200">
+                {contact.resumesTitle}
+              </p>
+              <div className="mt-4 grid gap-4">
+                {contact.resumes.map((resume) => (
+                  <a
+                    key={resume.label}
+                    href={resume.url}
+                    download
+                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition-colors hover:border-cyan-300/30"
+                  >
+                    <div className="inline-flex shrink-0 rounded-xl bg-cyan-400/10 p-3 text-cyan-200">
+                      <Download size={18} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-base font-medium text-white">{resume.label}</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-400">{resume.helper}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="grid gap-4">
-          {contactCards.map((item) => {
-            const Icon = item.icon;
+          {contact.contactCards.map((item) => {
+            const Icon = contactIcons[item.key];
             const value = contactValues[item.key];
 
             return (
@@ -90,12 +106,27 @@ const ContactSection = ({ contact, isVisible }) => {
 ContactSection.propTypes = {
   contact: PropTypes.shape({
     availability: PropTypes.string.isRequired,
-    cvUrl: PropTypes.string.isRequired,
+    contactCards: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.oneOf(["email", "linkedin", "github"]).isRequired,
+        label: PropTypes.string.isRequired,
+        platformLabel: PropTypes.string.isRequired
+      })
+    ).isRequired,
     eyebrow: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     github: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     intro: PropTypes.string.isRequired,
     linkedin: PropTypes.string.isRequired,
+    resumes: PropTypes.arrayOf(
+      PropTypes.shape({
+        helper: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired
+      })
+    ).isRequired,
+    resumesTitle: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired,
   isVisible: PropTypes.bool.isRequired

@@ -9,6 +9,12 @@ export const useTypingText = (
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    setDisplayText("");
+    setTextIndex(0);
+    setIsDeleting(false);
+  }, [texts]);
+
+  useEffect(() => {
     if (!texts?.length) {
       return undefined;
     }

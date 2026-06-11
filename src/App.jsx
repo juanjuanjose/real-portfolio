@@ -1,4 +1,9 @@
-import { portfolioContent } from "./content/portfolioContent";
+import { useEffect, useState } from "react";
+import {
+  defaultLanguage,
+  languageOptions,
+  portfolioContent
+} from "./content/portfolioContent";
 import { useSectionVisibility } from "./hooks/useSectionVisibility";
 import { useTypingText } from "./hooks/useTypingText";
 import ContactSection from "./sections/ContactSection";
@@ -11,6 +16,14 @@ import ProjectsSection from "./sections/ProjectsSection";
 import SiteHeader from "./sections/SiteHeader";
 
 function App() {
+  const [language, setLanguage] = useState(() => {
+    if (typeof window === "undefined") {
+      return defaultLanguage;
+    }
+
+    return window.localStorage.getItem("portfolio-language") ?? defaultLanguage;
+  });
+  const content = portfolioContent[language] ?? portfolioContent[defaultLanguage];
   const {
     contact,
     automationSection,
@@ -21,10 +34,24 @@ function App() {
     nav,
     projects,
     projectsSection,
-    summary
-  } = portfolioContent;
+    summary,
+    languageSwitcher
+  } = content;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("portfolio-language", language);
+    }
+
+    document.documentElement.lang = language;
+  }, [language]);
+
   const typingText = useTypingText(hero.roles);
   const visibleSections = useSectionVisibility();
+  const toggleLanguage = () => {
+    setLanguage((currentLanguage) => (currentLanguage === "es" ? "en" : "es"));
+  };
+
   const animatedSections = [
     {
       id: summary.id,
@@ -33,7 +60,7 @@ function App() {
       )
     },
     {
-      id: "experiencia",
+      id: experienceSection.id,
       render: (isVisible) => (
         <ExperienceSection
           sectionContent={experienceSection}
@@ -43,13 +70,13 @@ function App() {
       )
     },
     {
-      id: "automatizacion",
+      id: automationSection.id,
       render: (isVisible) => (
         <AutomationSection sectionContent={automationSection} isVisible={isVisible} />
       )
     },
     {
-      id: "proyectos",
+      id: projectsSection.id,
       render: (isVisible) => (
         <ProjectsSection
           projectsSection={projectsSection}
@@ -59,7 +86,7 @@ function App() {
       )
     },
     {
-      id: "contacto",
+      id: contact.id,
       render: (isVisible) => <ContactSection contact={contact} isVisible={isVisible} />
     }
   ];
@@ -68,7 +95,14 @@ function App() {
     <div className="page-shell min-h-screen text-white">
       <div className="page-grid" aria-hidden="true" />
       <div className="page-glow" aria-hidden="true" />
-      <SiteHeader nav={nav} brand={footer.name} />
+      <SiteHeader
+        nav={nav}
+        brand={portfolioContent.es.footer.name}
+        language={language}
+        languageSwitcher={languageSwitcher}
+        languageOptions={languageOptions}
+        onToggleLanguage={toggleLanguage}
+      />
       <main className="relative z-10">
         <HeroSection hero={hero} typingText={typingText} />
         {animatedSections.map((section) => (
