@@ -24,7 +24,7 @@ export const portfolioContent = {
     ],
     hero: {
       id: "inicio",
-      profileImage: assetPath("images/yo.jpg"),
+      profileImage: assetPath("images/Me.jpeg"),
       profileAlt: "Retrato profesional de Juan José",
       greeting: "Hola, soy",
       name: "Juan José",
@@ -204,6 +204,15 @@ export const portfolioContent = {
         featured: true
       },
       {
+        title: "Ridepedia",
+        description:
+          "Experiencia web enfocada en motocicletas con una base más visual e interactiva, construida con React, TypeScript y 3D en navegador para explorar el producto con mayor impacto.",
+        image: assetPath("images/Ridepedia.png"),
+        tags: ["React", "TypeScript", "Three.js", "Vite"],
+        githubUrl: "https://github.com/juanjuanjose/Ridepedia",
+        demoUrl: "https://juanjuanjose.github.io/Ridepedia/#/"
+      },
+      {
         title: "Portfolio Personal",
         description:
           "Landing modular en React para presentar narrativa profesional, experiencia aplicada y una identidad visual más elegante, pensada para evolucionar sin volver al monolito inicial.",
@@ -266,7 +275,7 @@ export const portfolioContent = {
     ],
     hero: {
       id: "inicio",
-      profileImage: assetPath("images/yo.jpg"),
+      profileImage: assetPath("images/Me.jpeg"),
       profileAlt: "Professional portrait of Juan Jose",
       greeting: "Hi, I'm",
       name: "Juan Jose",
@@ -444,6 +453,15 @@ export const portfolioContent = {
         githubUrl: "https://github.com/jonathantombe/MisakGuambShop-Front",
         demoUrl: "https://misak-guamb-shop-front-qxyi.vercel.app/",
         featured: true
+      },
+      {
+        title: "Ridepedia",
+        description:
+          "A motorcycle-focused web experience with a more visual and interactive approach, built with React, TypeScript, and browser-based 3D to showcase the product with stronger impact.",
+        image: assetPath("images/Ridepedia.png"),
+        tags: ["React", "TypeScript", "Three.js", "Vite"],
+        githubUrl: "https://github.com/juanjuanjose/Ridepedia",
+        demoUrl: "https://juanjuanjose.github.io/Ridepedia/#/"
       },
       {
         title: "Personal Portfolio",
