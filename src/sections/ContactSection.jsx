@@ -30,73 +30,83 @@ const ContactSection = ({ contact, isVisible }) => {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.95fr]">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur md:p-10">
-          <span className="text-sm font-medium uppercase tracking-[0.25em] text-cyan-200">
-            {contact.eyebrow}
-          </span>
-          <h2 className="mt-4 text-4xl font-semibold text-white">{contact.title}</h2>
-          <p className="mt-6 text-base leading-8 text-slate-300">{contact.intro}</p>
+      <div className="mx-auto max-w-6xl space-y-10">
+        <div className="rounded-[2.4rem] border border-[#780606]/35 bg-white/[0.03] p-8 backdrop-blur md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+            <div className="max-w-4xl">
+              <span className="text-sm font-medium uppercase tracking-[0.25em] text-[#d78a8a]">
+                {contact.eyebrow}
+              </span>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-5xl">
+                {contact.title}
+              </h2>
+            </div>
 
-          <div className="mt-8 space-y-4">
-            <span className="inline-flex rounded-full border border-white/10 bg-slate-950/70 px-4 py-2 text-sm text-slate-300">
-              {contact.availability}
-            </span>
-
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-200">
-                {contact.resumesTitle}
-              </p>
-              <div className="mt-4 grid gap-4">
-                {contact.resumes.map((resume) => (
-                  <a
-                    key={resume.label}
-                    href={resume.url}
-                    download
-                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition-colors hover:border-cyan-300/30"
-                  >
-                    <div className="inline-flex shrink-0 rounded-xl bg-cyan-400/10 p-3 text-cyan-200">
-                      <Download size={18} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-base font-medium text-white">{resume.label}</p>
-                      <p className="mt-2 text-sm leading-6 text-slate-400">{resume.helper}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
+            <div className="space-y-4 lg:justify-self-end">
+              <p className="max-w-2xl text-base leading-8 text-slate-400">{contact.intro}</p>
+              <span className="inline-flex rounded-full border border-[#780606]/35 bg-black/70 px-4 py-2 text-sm text-slate-300">
+                {contact.availability}
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="grid gap-4">
-          {contact.contactCards.map((item) => {
-            const Icon = contactIcons[item.key];
-            const value = contactValues[item.key];
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-[2rem] border border-[#780606]/30 bg-black/70 p-6 md:p-7">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#d78a8a]">
+              {contact.resumesTitle}
+            </p>
+            <p className="mt-4 max-w-md text-base leading-8 text-slate-300">{contact.contactLead}</p>
 
-            return (
-              <a
-                key={item.key}
-                href={value.href}
-                target={item.key === "email" ? undefined : "_blank"}
-                rel={item.key === "email" ? undefined : "noopener noreferrer"}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:border-cyan-300/30"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="rounded-2xl bg-cyan-400/10 p-3 text-cyan-200">
-                    <Icon size={20} />
+            <div className="mt-6 grid gap-4">
+              {contact.resumes.map((resume) => (
+                <a
+                  key={resume.label}
+                  href={resume.url}
+                  download
+                  className="flex items-start gap-4 rounded-[1.6rem] border border-[#780606]/25 bg-white/[0.02] p-5 transition-colors hover:border-[#780606]"
+                >
+                  <div className="inline-flex shrink-0 rounded-xl border border-[#780606]/30 bg-[#780606]/14 p-3 text-[#e7b1b1]">
+                    <Download size={18} />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-200">
-                      {item.label}
-                    </p>
-                    <p className="mt-2 text-lg font-medium text-white">{item.platformLabel}</p>
-                    <p className="mt-2 text-sm text-slate-400">{value.text}</p>
+                  <div className="min-w-0">
+                    <p className="text-base font-medium text-white">{resume.label}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{resume.helper}</p>
                   </div>
-                </div>
-              </a>
-            );
-          })}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+            {contact.contactCards.map((item) => {
+              const Icon = contactIcons[item.key];
+              const value = contactValues[item.key];
+
+              return (
+                <a
+                  key={item.key}
+                  href={value.href}
+                  target={item.key === "email" ? undefined : "_blank"}
+                  rel={item.key === "email" ? undefined : "noopener noreferrer"}
+                  className="rounded-[2rem] border border-[#780606]/30 bg-white/[0.03] p-6 backdrop-blur transition-colors hover:border-[#780606]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-2xl border border-[#780606]/30 bg-[#780606]/14 p-3 text-[#e7b1b1]">
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#d78a8a]">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-lg font-medium text-white">{item.platformLabel}</p>
+                      <p className="mt-2 text-sm text-slate-400">{value.text}</p>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
@@ -113,6 +123,7 @@ ContactSection.propTypes = {
         platformLabel: PropTypes.string.isRequired
       })
     ).isRequired,
+    contactLead: PropTypes.string.isRequired,
     eyebrow: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     github: PropTypes.string.isRequired,

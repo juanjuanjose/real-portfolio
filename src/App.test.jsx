@@ -6,10 +6,20 @@ describe("Portfolio language experience", () => {
   it("renders Spanish content by default", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: /juan jos/i })).toBeInTheDocument();
-    expect(screen.getByText(/hola, soy/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /evidencia de ejecuci.n, no promesas vac.as/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /frontend con intenci.n. automatizaci.n .til. producto digital mejor resuelto/i
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/disponible para proyectos remotos/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /ridepedia es la pieza que mejor muestra el nivel visual y t.cnico que quiero proyectar/i
+      })
+    ).toBeInTheDocument();
     expect(screen.getByText(/hojas de vida/i)).toBeInTheDocument();
+    expect(screen.getByText((_, element) => element?.textContent === "Formación")).toBeInTheDocument();
+    expect(screen.getByText(/ingenier.a en sistemas/i)).toBeInTheDocument();
     expect(document.documentElement.lang).toBe("es");
   });
 
@@ -18,12 +28,23 @@ describe("Portfolio language experience", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /cambiar idioma/i }));
 
-    expect(screen.getByText(/hi, i'm/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /execution you can verify, not empty promises/i })).toBeInTheDocument();
+    expect(screen.getByText(/available for remote projects/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /intentional frontend. useful automation. better resolved digital product/i
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /ridepedia is the piece that shows the visual and technical level i want to project most clearly/i
+      })
+    ).toBeInTheDocument();
     expect(screen.getByText(/resumes/i)).toBeInTheDocument();
+    expect(screen.getByText((_, element) => element?.textContent === "Education")).toBeInTheDocument();
+    expect(screen.getByText(/systems engineering/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /resume in english/i })).toHaveAttribute(
       "href",
-      assetPath("hojavida/CV_JuanJose_en.pdf")
+      assetPath("hojavida/CV_JuanJose_Completo_EN.pdf")
     );
     expect(window.localStorage.getItem("portfolio-language")).toBe("en");
     expect(document.documentElement.lang).toBe("en");
@@ -34,11 +55,11 @@ describe("Portfolio language experience", () => {
 
     expect(screen.getByRole("link", { name: /hoja de vida en espa.ol/i })).toHaveAttribute(
       "href",
-      assetPath("hojavida/Hoja_de_vida.pdf")
+      assetPath("hojavida/CV_JuanJose_Completo.pdf")
     );
     expect(screen.getByRole("link", { name: /resume in english/i })).toHaveAttribute(
       "href",
-      assetPath("hojavida/CV_JuanJose_en.pdf")
+      assetPath("hojavida/CV_JuanJose_Completo_EN.pdf")
     );
   });
 

@@ -16,68 +16,70 @@ const AutomationSection = ({ sectionContent, isVisible }) => {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
-      <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur md:p-10">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <span className="text-sm font-medium uppercase tracking-[0.25em] text-cyan-200">
+      <div className="mx-auto max-w-6xl space-y-12">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <div className="max-w-4xl">
+            <span className="text-sm font-medium uppercase tracking-[0.25em] text-[#d78a8a]">
               {sectionContent.eyebrow}
             </span>
-            <h2 className="mt-4 text-4xl font-semibold text-white">{sectionContent.title}</h2>
-            <p className="mt-6 text-base leading-8 text-slate-300">{sectionContent.intro}</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-5xl">
+              {sectionContent.title}
+            </h2>
+          </div>
 
-            <div className="mt-8 space-y-3">
-              {sectionContent.pillars.map((pillar) => (
-                <div
-                  key={pillar}
-                  className="rounded-2xl border border-white/10 bg-slate-950/60 px-5 py-4 text-sm leading-7 text-slate-300"
-                >
-                  {pillar}
-                </div>
-              ))}
+          <p className="max-w-2xl text-base leading-8 text-slate-400 lg:justify-self-end">
+            {sectionContent.intro}
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {sectionContent.pillars.map((pillar) => (
+            <div
+              key={pillar}
+              className="rounded-[1.6rem] border border-[#780606]/25 bg-white/[0.03] px-5 py-5 text-sm leading-7 text-slate-300 backdrop-blur"
+            >
+              {pillar}
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="grid gap-4">
-            {sectionContent.tools.map((tool) => {
-              const Icon = toolIcons[tool.name] ?? Workflow;
+        <div className="grid gap-5 xl:grid-cols-3">
+          {sectionContent.tools.map((tool) => {
+            const Icon = toolIcons[tool.name] ?? Workflow;
 
-              return (
-                <article
-                  key={tool.name}
-                  className="rounded-3xl border border-white/10 bg-slate-950/60 p-6"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-2xl bg-cyan-400/10 p-3 text-cyan-200">
-                      <Icon size={20} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                          <p className="text-xl font-semibold text-white">{tool.name}</p>
-                          <p className="mt-1 text-sm uppercase tracking-[0.2em] text-cyan-200">
-                            {tool.category}
-                          </p>
-                        </div>
-                      </div>
-
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{tool.description}</p>
-
-                      <div className="mt-5 flex flex-wrap gap-2">
-                        {tool.useCases.map((useCase) => (
-                          <span
-                            key={useCase}
-                            className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-100"
-                          >
-                            {useCase}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+            return (
+              <article
+                key={tool.name}
+                className="rounded-[2rem] border border-[#780606]/25 bg-black/68 p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl border border-[#780606]/30 bg-[#780606]/14 p-3 text-[#e7b1b1]">
+                    <Icon size={20} />
                   </div>
-                </article>
-              );
-            })}
-          </div>
+
+                  <div className="flex-1">
+                    <p className="text-xl font-semibold text-white">{tool.name}</p>
+                    <p className="mt-1 text-sm uppercase tracking-[0.2em] text-[#d78a8a]">
+                      {tool.category}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-5 text-sm leading-7 text-slate-300">{tool.description}</p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {tool.useCases.map((useCase) => (
+                    <span
+                      key={useCase}
+                      className="rounded-full border border-[#780606]/35 bg-[#780606]/14 px-3 py-1 text-xs text-[#f0c6c6]"
+                    >
+                      {useCase}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -86,9 +88,9 @@ const AutomationSection = ({ sectionContent, isVisible }) => {
 
 AutomationSection.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-    sectionContent: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      eyebrow: PropTypes.string.isRequired,
+  sectionContent: PropTypes.shape({
+    eyebrow: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     intro: PropTypes.string.isRequired,
     pillars: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,

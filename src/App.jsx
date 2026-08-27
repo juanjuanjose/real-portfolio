@@ -5,7 +5,6 @@ import {
   portfolioContent
 } from "./content/portfolioContent";
 import { useSectionVisibility } from "./hooks/useSectionVisibility";
-import { useTypingText } from "./hooks/useTypingText";
 import ContactSection from "./sections/ContactSection";
 import AutomationSection from "./sections/AutomationSection";
 import ExperienceSection from "./sections/ExperienceSection";
@@ -46,7 +45,6 @@ function App() {
     document.documentElement.lang = language;
   }, [language]);
 
-  const typingText = useTypingText(hero.roles);
   const visibleSections = useSectionVisibility();
   const toggleLanguage = () => {
     setLanguage((currentLanguage) => (currentLanguage === "es" ? "en" : "es"));
@@ -57,6 +55,16 @@ function App() {
       id: summary.id,
       render: (isVisible) => (
         <ProfessionalSummarySection summary={summary} isVisible={isVisible} />
+      )
+    },
+    {
+      id: projectsSection.id,
+      render: (isVisible) => (
+        <ProjectsSection
+          projectsSection={projectsSection}
+          projects={projects}
+          isVisible={isVisible}
+        />
       )
     },
     {
@@ -76,16 +84,6 @@ function App() {
       )
     },
     {
-      id: projectsSection.id,
-      render: (isVisible) => (
-        <ProjectsSection
-          projectsSection={projectsSection}
-          projects={projects}
-          isVisible={isVisible}
-        />
-      )
-    },
-    {
       id: contact.id,
       render: (isVisible) => <ContactSection contact={contact} isVisible={isVisible} />
     }
@@ -97,14 +95,14 @@ function App() {
       <div className="page-glow" aria-hidden="true" />
       <SiteHeader
         nav={nav}
-        brand={portfolioContent.es.footer.name}
+        brand={hero.name}
         language={language}
         languageSwitcher={languageSwitcher}
         languageOptions={languageOptions}
         onToggleLanguage={toggleLanguage}
       />
       <main className="relative z-10">
-        <HeroSection hero={hero} typingText={typingText} />
+        <HeroSection hero={hero} />
         {animatedSections.map((section) => (
           <div key={section.id}>{section.render(visibleSections.has(section.id))}</div>
         ))}

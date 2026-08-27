@@ -1,105 +1,119 @@
 import PropTypes from "prop-types";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const socialIcons = {
-  email: Mail,
-  github: Github,
-  linkedin: Linkedin
-};
+const HeroSection = ({ hero }) => {
+  const [primaryRole] = hero.roles;
+  const highlightedStats = hero.stats.slice(0, 2);
 
-const HeroSection = ({ hero, typingText }) => {
   return (
-    <section id={hero.id} className="min-h-screen flex items-center px-6 pt-24 pb-16">
-      <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_0.8fr] gap-14 items-center">
-        <div>
-          <span className="inline-flex items-center px-1 text-lg font-medium text-cyan-100 md:text-xl">
-            {hero.greeting}
-          </span>
+    <section id={hero.id} className="px-6 pb-24 pt-24 md:pt-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-10 lg:grid-cols-[1.18fr_0.82fr] lg:items-start lg:gap-14">
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap items-center gap-3 text-xs font-medium uppercase tracking-[0.24em] text-slate-400">
+              <span className="text-white">{hero.name}</span>
+              <span className="text-[#780606]">/</span>
+              <span>{hero.location}</span>
+              <span className="text-[#780606]">/</span>
+              <span>{hero.greeting}</span>
+            </div>
 
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
-            {hero.name}
-          </h1>
+            <p className="mt-10 text-sm font-medium uppercase tracking-[0.3em] text-[#d78a8a]">
+              {hero.supportingLabel}
+            </p>
 
-          <div className="mt-5 h-16 text-2xl font-light text-slate-200 md:text-3xl">
-            {typingText}
-            <span className="animate-pulse text-cyan-300">|</span>
-          </div>
+            <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.96] tracking-tight text-white md:text-6xl lg:text-[5rem]">
+              {hero.headline}
+            </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            {hero.summary}
-          </p>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl md:leading-9">
+              {hero.summary}
+            </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {hero.cards.map((card) => (
-              <div
-                key={card.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur"
-              >
-                <p className={`text-xs uppercase tracking-[0.25em] ${card.accent}`}>{card.title}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{card.description}</p>
-              </div>
-            ))}
-          </div>
+            <div className="mt-8 inline-flex items-center rounded-full border border-[#780606]/28 bg-black/45 px-4 py-2.5 text-sm text-slate-300">
+              <span className="font-medium uppercase tracking-[0.18em] text-[#f0c6c6]">{primaryRole}</span>
+            </div>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            {hero.ctas.map((cta) => (
-              <a
-                key={cta.label}
-                href={cta.href}
-                className={
-                  cta.variant === "primary"
-                    ? "inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
-                    : "inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-slate-200 backdrop-blur transition-colors hover:border-cyan-300/30 hover:text-white"
-                }
-              >
-                {cta.label}
-                {cta.variant === "primary" && <ArrowRight size={18} />}
-              </a>
-            ))}
-          </div>
+            <div className="mt-10 flex flex-wrap gap-4">
+              {hero.ctas.map((cta) => (
+                <a
+                  key={cta.label}
+                  href={cta.href}
+                  className={
+                    cta.variant === "primary"
+                      ? "inline-flex items-center gap-2 rounded-full border border-[#780606] bg-[#780606] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition-all hover:-translate-y-0.5 hover:border-[#a30b0b] hover:bg-[#8c0707]"
+                      : "inline-flex items-center gap-2 rounded-full border border-[#780606]/40 bg-white/[0.02] px-6 py-3 text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition-colors hover:border-[#780606] hover:bg-[#780606]/10 hover:text-white"
+                  }
+                >
+                  {cta.label}
+                  {cta.variant === "primary" && <ArrowRight size={18} />}
+                </a>
+              ))}
+            </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {hero.socialLinks.map((link) => {
-              const Icon = socialIcons[link.platform];
-
-              return (
+            <div className="mt-10 flex flex-wrap items-center gap-5 text-sm uppercase tracking-[0.22em] text-slate-400">
+              {hero.socialLinks.map((link, index) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target={link.platform === "email" ? undefined : "_blank"}
                   rel={link.platform === "email" ? undefined : "noopener noreferrer"}
-                  aria-label={link.label}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur transition-colors hover:border-cyan-300/40 hover:bg-cyan-400/10 hover:text-white"
+                  className="transition-colors hover:text-white"
                 >
-                  <Icon size={18} />
+                  {link.label}
+                  {index < hero.socialLinks.length - 1 && (
+                    <span className="ml-5 text-[#780606]" aria-hidden="true">
+                      /
+                    </span>
+                  )}
                 </a>
-              );
-            })}
-          </div>
-        </div>
+              ))}
+            </div>
 
-        <div className="space-y-6">
-          <div className="relative mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-white/5 p-3 shadow-[0_0_80px_rgba(59,130,246,0.15)] backdrop-blur">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.18),transparent_60%)]" />
-            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-950">
-                <img
-                  src={hero.profileImage}
-                  alt={hero.profileAlt}
-                  className="h-[420px] w-full object-cover"
-                />
+            <div className="mt-12 grid gap-4 md:grid-cols-2">
+              {highlightedStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-[1.75rem] border border-[#780606]/20 bg-black/38 px-5 py-5"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d78a8a]">
+                    {stat.value}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-2">
-            {hero.stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur"
-              >
-                <p className="text-sm font-semibold text-white">{stat.value}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{stat.label}</p>
+          <div className="lg:-mt-[236px] lg:justify-self-end lg:self-center">
+            <div className="relative mx-auto w-full max-w-md">
+              <div className="absolute -bottom-6 -left-6 right-10 top-10 rounded-[2.6rem] border border-[#780606]/20 bg-[linear-gradient(180deg,rgba(120,6,6,0.1),rgba(0,0,0,0.18))]" />
+              <div className="absolute -right-3 top-14 h-24 w-24 rounded-full bg-[#780606]/12 blur-3xl" aria-hidden="true" />
+
+              <div className="relative overflow-hidden rounded-[2.4rem] border border-[#780606]/35 bg-white/[0.03] p-4 shadow-[0_32px_110px_rgba(0,0,0,0.4)] backdrop-blur">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_30%),radial-gradient(circle_at_80%_18%,rgba(120,6,6,0.14),transparent_24%)]" />
+                <div className="relative flex items-center justify-between px-2 pb-4">
+                  <span className="inline-flex rounded-full border border-[#780606]/35 bg-black/55 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#f0c6c6]">
+                    {hero.portraitBadge}
+                  </span>
+                  <span className="h-px w-16 bg-gradient-to-r from-[#780606]/70 to-transparent" aria-hidden="true" />
+                </div>
+
+                <div className="relative overflow-hidden rounded-[2rem] border border-[#780606]/28 bg-black">
+                  <img
+                    src={hero.profileImage}
+                    alt={hero.profileAlt}
+                    className="h-[540px] w-full object-cover object-center"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/28 to-transparent" />
+                </div>
+
+                <div className="relative flex items-center gap-3 px-2 pt-4" aria-hidden="true">
+                  <span className="h-2 w-2 rounded-full bg-[#780606]" />
+                  <span className="h-px flex-1 bg-gradient-to-r from-[#780606]/70 via-[#780606]/15 to-transparent" />
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
@@ -116,18 +130,15 @@ HeroSection.propTypes = {
         variant: PropTypes.string.isRequired
       })
     ).isRequired,
-    cards: PropTypes.arrayOf(
-      PropTypes.shape({
-        accent: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired
-      })
-    ).isRequired,
     greeting: PropTypes.string.isRequired,
+    headline: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     profileAlt: PropTypes.string.isRequired,
+    portraitBadge: PropTypes.string.isRequired,
     profileImage: PropTypes.string.isRequired,
+    roles: PropTypes.arrayOf(PropTypes.string).isRequired,
     socialLinks: PropTypes.arrayOf(
       PropTypes.shape({
         href: PropTypes.string.isRequired,
@@ -141,9 +152,9 @@ HeroSection.propTypes = {
         value: PropTypes.string.isRequired
       })
     ).isRequired,
-    summary: PropTypes.string.isRequired
-  }).isRequired,
-  typingText: PropTypes.string.isRequired
+    summary: PropTypes.string.isRequired,
+    supportingLabel: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default HeroSection;
